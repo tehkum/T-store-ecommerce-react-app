@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/T-store-ecommerce-react-app/static/css/main.81a14227.css",
+    "main.js": "/T-store-ecommerce-react-app/static/js/main.dee83af4.js",
+    "static/media/shoes.jpg": "/T-store-ecommerce-react-app/static/media/shoes.0800a183c3fd294b366a.jpg",
+    "static/media/football.jpg": "/T-store-ecommerce-react-app/static/media/football.16cbfe572ab462cb3fb1.jpg",
+    "static/media/frontpage-box2.jpg": "/T-store-ecommerce-react-app/static/media/frontpage-box2.75327a4fabc378b84165.jpg",
+    "static/media/tshirt.jpg": "/T-store-ecommerce-react-app/static/media/tshirt.0de5acedd24fbb08c806.jpg",
+    "static/media/logo.png": "/T-store-ecommerce-react-app/static/media/logo.2eb34dd23dbd77c61154.png",
+    "static/media/jeans.png": "/T-store-ecommerce-react-app/static/media/jeans.705588574a0589b1f70f.png",
+    "static/media/tshirt1.png": "/T-store-ecommerce-react-app/static/media/tshirt1.64a5186009e901c3467a.png",
+    "index.html": "/T-store-ecommerce-react-app/index.html",
+    "main.81a14227.css.map": "/T-store-ecommerce-react-app/static/css/main.81a14227.css.map",
+    "main.dee83af4.js.map": "/T-store-ecommerce-react-app/static/js/main.dee83af4.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.81a14227.css",
+    "static/js/main.dee83af4.js"
+  ]
+}
