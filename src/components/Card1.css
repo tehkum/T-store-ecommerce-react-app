@@ -1,0 +1,14 @@
+.card1 {
+  background-color: #eceef0;
+  width: 200px;
+  height: 100px;
+  display: flex;
+  /* flex-direction: row-reverse; */
+  padding: 0.3rem;
+}
+
+.card1-link {
+  text-decoration: underline;
+  color: black;
+  align-self: flex-end;
+}

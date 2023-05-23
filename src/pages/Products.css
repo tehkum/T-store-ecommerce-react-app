@@ -1,0 +1,126 @@
+.top-products-desc{
+    width: 80%;
+    margin: auto;
+}
+
+.top-products-desc h1{
+    font-size: 35px;
+}
+
+.top-products-desc p{
+    font-size: 13px;
+}
+
+.filter-box-products{
+    background-color: rgba(0, 0, 0, 0.749);
+    padding: 1rem;
+    border: 2px solid black;
+    border-radius: 5px;
+    color: white;
+}
+
+.btn-showFilter{
+    width: 150px;
+    height: 40px;
+    color: white;
+    background-color: black;
+    border: none;
+    box-shadow: 2px 2px 2px rgb(0,0,0);
+    margin: auto;
+}
+.btn-hideFilter{
+    width: 150px;
+    height: 40px;
+    background-color: white;
+    border: none;
+    box-shadow: 2px 2px 2px rgb(0,0,0);
+    align-self: center;
+}
+
+.dis-hidden {
+    display: none;
+}
+
+
+@media(max-width: 620px){
+    .products-container {
+        gap: 10px;
+        width: 300px;
+        margin: auto;
+    }
+    .filter-box-products{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        width: 80%;
+        margin: auto;
+    }
+    
+    .radio-filter{
+        display: flex;
+        flex-direction: column;
+        padding: 1rem 0;
+    }
+    
+    .range-filter{
+        padding: 1rem 0;
+    }
+    
+    .rating-filter{
+        display: flex;
+        flex-direction: column;
+        padding: 1rem 0;
+    }
+    
+}
+
+
+
+
+@media(min-width: 620px){
+    .products-container {
+        display: grid;
+        grid-template-columns: 300px 300px ;
+        gap: 10px;
+        width: 600px;
+        margin: 2rem auto;
+    }
+    .filter-box-products{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 80%;
+        margin: 2rem auto;
+        gap: 3rem;
+    }
+    
+    .radio-filter{
+        /* display: flex;
+        flex-direction: row;
+        flex-wrap: wrap; */
+        padding: 1rem 0;
+    }
+    
+    .range-filter{
+        padding: 1rem 0;
+    }
+    
+    .rating-filter{
+        /* display: flex;
+        flex-direction: row;
+        flex-wrap: wrap; */
+        padding: 1rem 0;
+    }
+    
+}
+
+@media(min-width: 956px){
+    .products-container {
+        display: grid;
+        grid-template-columns: 300px 300px 300px;
+        gap: 10px;
+        width: 900px;
+        margin: 2rem auto;
+    }
+    
+}

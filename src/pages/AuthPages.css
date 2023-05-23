@@ -1,0 +1,64 @@
+.login-container {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0.5rem;
+}
+
+.part2-login li {
+  list-style: none;
+}
+
+.part1-login {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+}
+
+.part2-login {
+  width: 600px;
+}
+
+.fgt-pass {
+  color: black;
+}
+
+.field-inp {
+  width: 400px;
+  padding: 1rem;
+  margin: 1rem 0;
+  font-size: large;
+}
+
+.field-inp::placeholder {
+  font-size: large;
+}
+
+.button-login {
+  width: 200px;
+  padding: 0.5rem 1rem;
+  border: 1px solid black;
+  margin: 0.5rem 0;
+}
+
+.btn-secondary {
+  background-color: white;
+  box-shadow: 2px 2px 0 rgb(0, 0, 0);
+}
+
+.btn-primary {
+  background-color: black;
+  color: white;
+  box-shadow: 2px 2px 0 rgb(0, 0, 0);
+}
+
+@media (min-width: 740px) {
+  .login-container {
+    padding: 7rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .field-inp {
+    width: 250px;
+  }
+}
