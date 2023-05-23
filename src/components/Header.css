@@ -31,7 +31,7 @@ nav {
     display: none;
   }
 
-  .search-bar {
+  .hidden-bar {
     display: none;
   }
   .product-link {
@@ -52,6 +52,9 @@ nav {
     /* background-color: tan; */
   }
 
+  .hidden-big{
+    display: none;
+  }
   .Logo {
     padding-right: 0.5rem;
   }

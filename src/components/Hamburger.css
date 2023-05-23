@@ -1,0 +1,9 @@
+.hamburger-menu nav{
+    position: absolute;
+    width: 70px;
+    right: 0;
+    top: 150px;
+    gap: 1rem;
+    display: inline-flex;
+    flex-direction: column;
+}

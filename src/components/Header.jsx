@@ -2,8 +2,12 @@ import { NavLink } from "react-router-dom";
 import "./Header.css";
 import SearchBar from "./SearchBar";
 import logo from "../images/logo.png";
+import HamburgerMenu from "./HamburgerMenu";
+import { useState } from "react";
 
 export default function Header() {
+  const [ showHamburger, setHamburger ] = useState(false);
+
   return (
     <>
       <div className="above-nav">
@@ -29,7 +33,8 @@ export default function Header() {
         </span>
         <div className="icon-navs">
           <span className="navigation-links">
-            <SearchBar />
+            <div className="hidden-bar"><SearchBar /></div>
+            
           </span>
           <NavLink className="navigation-links link2" to="/Login">
             <img
@@ -56,8 +61,10 @@ export default function Header() {
             />
           </NavLink>
         </div>
-        <button className="hamburger">|||</button>
+        <button className="hamburger" onClick={()=>setHamburger(!showHamburger)}>|||</button>
+        
       </nav>
+      {showHamburger &&  <div className="hidden-big"><HamburgerMenu /></div>}
     </>
   );
 }
