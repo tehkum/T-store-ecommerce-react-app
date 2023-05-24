@@ -90,12 +90,14 @@
   background-color: #f5f5e5;
   display: flex;
   gap: 10px;
-  font-size: 13px;
-  padding: 2rem 5rem;
+  font-size: 18px;
+  color: #333333;
+  line-height: 1.5;
+  padding: 2rem 0.5rem;
 }
 
 .box-no5-home h1 {
-  font-size: 35px;
+  font-size: 36px;
 }
 
 /* .box-no5-home p{
@@ -134,4 +136,8 @@
     /* width: 100px; */
     padding: 0.5rem 1rem;
   }
+  .box-no5-home {   
+    padding: 2rem 5rem;
+  }
+  
 }
