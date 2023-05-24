@@ -11,11 +11,13 @@ import tshirt from "../images/tshirt.jpg";
 import shoes from "../images/shoes.jpg";
 import tshirt1 from "../images/tshirt1.png";
 import jeans from "../images/jeans.png";
+import { useNavigate } from "react-router-dom";
 
 export function HomePage() {
 
   const { productData } = useContext(useProducts);
-  console.log(productData);
+  const navigate = useNavigate();
+
 
   return (
     <>
@@ -39,7 +41,7 @@ export function HomePage() {
               Free-thinkers, culture-makers and originators - welcome to Club
               Originals.
             </p>
-            <button>SHOP NOW </button>
+            <button onClick={()=>navigate("/products/all")}>SHOP NOW </button>
           </div>
         </div>
         <img src={front1} alt="front page" className="card-no2-img" />
@@ -58,9 +60,9 @@ export function HomePage() {
       <div className="box-no4-home">
         <h1>WHAT ARE YOU SHOPPING?</h1>
         <div className="slider2-products-home">
-          <BigCard image={shoes} title={"SHOES"} />
-          <BigCard image={tshirt} title={"T-SHIRT"} />
-          <BigCard image={football} title={"FOOTBALL"} />
+          <BigCard image={shoes} title={"SHOES"} cat={"shoes"}/>
+          <BigCard image={tshirt} title={"T-SHIRT"} cat={"t-shirts"} />
+          <BigCard image={football} title={"FOOTBALL"} cat={"football"} />
         </div>
       </div>
       {/* *************************************************** */}

@@ -61,10 +61,10 @@ export default function Header() {
             />
           </NavLink>
         </div>
-        <button className="hamburger" onClick={()=>setHamburger(!showHamburger)}>|||</button>
+        {showHamburger ? <button className="hamburger" onClick={()=>setHamburger(false)}><img width="30" height="30" src="https://img.icons8.com/ios/100/multiply.png" alt="multiply"/></button> : <button className="hamburger" onClick={()=>setHamburger(true)}>|||</button>}
         
       </nav>
-      {showHamburger &&  <div className="hidden-big"><HamburgerMenu /></div>}
+      {showHamburger &&  <div className="hidden-big"><HamburgerMenu hamSetter={setHamburger}/></div>}
     </>
   );
 }

@@ -1,9 +1,22 @@
 .hamburger-menu nav{
-    position: absolute;
+    position: fixed;
     width: 70px;
     right: 0;
     top: 150px;
     gap: 1rem;
     display: inline-flex;
     flex-direction: column;
+}
+
+.ham-buttons {
+    background-color: transparent;
+    border: none;
+    font-size: large;
+    cursor: pointer;
+    color: #666666;
+}
+
+.ham-buttons:hover{
+    font-style: italic;
+    font-weight: bold;
 }
