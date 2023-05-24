@@ -61,6 +61,7 @@ export default function Header() {
             />
           </NavLink>
         </div>
+        <SearchBar/>
         {showHamburger ? <button className="hamburger" onClick={()=>setHamburger(false)}><img width="30" height="30" src="https://img.icons8.com/ios/100/multiply.png" alt="multiply"/></button> : <button className="hamburger" onClick={()=>setHamburger(true)}>|||</button>}
         
       </nav>
