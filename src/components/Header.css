@@ -19,6 +19,16 @@ nav {
   font-size: small;
 }
 
+.link2{
+  position: relative;
+}
+
+.link2 p {
+  position: absolute;
+  top:0;
+  right:0;
+}
+
 .hamburger {
   transform: rotate(90deg);
   border: none;
@@ -72,6 +82,10 @@ nav {
     margin: 0.5rem;
     text-decoration: none;
   } */
+
+  .search-sm-hidden{
+    display: none;
+  }
 
   .hamburger {
     display: none;

@@ -51,6 +51,7 @@ export default function Header() {
               src="https://img.icons8.com/material-outlined/96/like--v1.png"
               alt="like--v1"
             />
+            <p>{"1"}</p>
           </NavLink>
           <NavLink className="navigation-links link3" to="/cart">
             <img
@@ -61,7 +62,7 @@ export default function Header() {
             />
           </NavLink>
         </div>
-        <SearchBar/>
+        <div className="search-sm-hidden"><SearchBar/></div>
         {showHamburger ? <button className="hamburger" onClick={()=>setHamburger(false)}><img width="30" height="30" src="https://img.icons8.com/ios/100/multiply.png" alt="multiply"/></button> : <button className="hamburger" onClick={()=>setHamburger(true)}>|||</button>}
         
       </nav>

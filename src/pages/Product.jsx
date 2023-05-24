@@ -12,6 +12,7 @@ export function Product() {
   const [specificProduct, setProduct] = useState({});
   const { cartDispatch } = useContext(useCart);
   const { wishlistDispatch } = useContext(useWishlist);
+  const [isLoading, setLoading] = useState(false);
 
   const fetchDetails = async () => {
     try {
@@ -26,6 +27,12 @@ export function Product() {
   useEffect(()=>{
     fetchDetails();
   });
+
+  const clickHandler = async () => {
+    setLoading(true)
+    await cartDispatch({type:"add-to-cart", data: specificProduct});
+    setLoading(false);
+  }
 
   const { title, type, image, image2, image3, image4, price, description } = specificProduct;
 
@@ -56,7 +63,7 @@ export function Product() {
           <p>7.5</p>
           <p>8</p>
         </div>
-        <button className="cart-btn" onClick={()=>cartDispatch({type:"add-to-cart", data: specificProduct})}>Add to cart</button>
+        <button className="cart-btn" disabled={isLoading} onClick={clickHandler}>Add to cart</button>
         {/* <button className="wishlist-btn" onClick={()=>wishlistDispatch({type:"add-to-wishlist", data: specificProduct})}><img width="15" height="15" src={h2} alt="like--v1"/></button>         */}
         <button className="wishlist-btn" onClick={()=>wishlistDispatch({type:"add-to-wishlist", data: specificProduct})}>ht</button>        
       </div>
