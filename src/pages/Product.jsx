@@ -70,7 +70,6 @@ export function Product() {
           <p>8</p>
         </div>
         <button className="cart-btn" disabled={cartLoading} onClick={clickHandler}>Add to cart</button>
-        {/* <button className="wishlist-btn" onClick={()=>wishlistDispatch({type:"add-to-wishlist", data: specificProduct})}><img width="15" height="15" src={h2} alt="like--v1"/></button>         */}
         <button className="wishlist-btn" disabled={wishlistLoading} onClick={wishlistClickHandler}>ht</button>        
       </div>
     </div>
