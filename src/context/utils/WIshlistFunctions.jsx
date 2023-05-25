@@ -35,3 +35,16 @@ export const RemoveFromWishlist = async (action) => {
     })
     return ([...res.data.wishlist]);
 }
+
+export const fetchDetails = async (wishlistDispatch) => {
+    try {
+      const { data } = await axios.get("/api/user/wishlist",{
+        headers: {
+          authorization: localStorage.getItem("encodedToken")
+        }
+      });
+      wishlistDispatch({type: "getWish", wishlist: await data.wishlist})
+    } catch (error) {
+      console.log(error);
+    }
+  } 

@@ -1,33 +1,14 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import CartCard from "../../components/CartCard";
 import "./Cartpage.css";
 import { useCart } from "../../context/CartProvider";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 
 export function CartPage() {
   const { cartState } = useContext(useCart);
-  const [ cart, setCart ] = useState([]);
-
-  const fetchCart = async () => {
-    try {
-      const {data} = await axios.get("/api/user/cart",{
-        headers: { 
-          authorization : localStorage.getItem("encodedToken")
-        }
-      })
-      setCart(await data.cart)
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  useEffect(()=>{
-    fetchCart();
-  },[cartState?.cartData])
 
   
-  const totalPrice = cart?.reduce((total,{price, qty})=> qty*(total + price) ,0)
+  const totalPrice = cartState?.mainCart?.reduce((total,{price, qty})=> qty*(total + price) ,0)
 
   const navigate = useNavigate()
 
@@ -40,14 +21,14 @@ export function CartPage() {
     <div className="cartpage">
       <div className="left-cart-area">
         <h1>Your Cart</h1>
-        <p>TOTAL [{cart?.length}] <b>₹{totalPrice}</b></p>
-        {cart?.length ? cart?.map(({_id,title,description,price, image, qty })=><CartCard id={_id} title={title} description={description} price={price} image={image} qty={qty}/>) : "Your cart is Empty"}
+        <p>TOTAL [{cartState?.mainCart?.length}] <b>₹{totalPrice}</b></p>
+        {cartState?.mainCart?.length ? cartState?.mainCart?.map(({_id,title,description,price, image, qty })=><CartCard id={_id} title={title} description={description} price={price} image={image} qty={qty}/>) : "Your cart is Empty"}
       </div>
       <div className="right-cart-area">
         <button className="btn btn-primary" onClick={wayToCheckout}>PROCEED TO CHECKOUT</button>
         <h2>Order summary</h2>
         <div className="sec1-cart-right">
-          <p>{cart?.length} item</p>
+          <p>{cartState?.mainCart?.length} item</p>
           <p>₹{totalPrice}</p>
         </div>
         <div className="sec2-cart-right">

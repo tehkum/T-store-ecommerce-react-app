@@ -36,6 +36,22 @@ export const addToCart = async (action) => {
     }
 }
 
+export const fetchCart = async (cartDispatch) => {
+    try {
+      const {data} = await axios.get("/api/user/cart",{
+        headers: { 
+          authorization : localStorage.getItem("encodedToken")
+        }
+      })
+      cartDispatch({type: "getCart", cart: await data.cart});
+      
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  
+
 
 export const removeFromCart = async (action) => {
     try {

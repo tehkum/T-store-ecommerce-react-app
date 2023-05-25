@@ -1,16 +1,20 @@
-import { createContext, useReducer } from "react";
-import { AddToWishlist, RemoveFromWishlist } from "./utils/WIshlistFunctions";
+import { createContext, useEffect, useReducer } from "react";
+import { AddToWishlist, RemoveFromWishlist, fetchDetails } from "./utils/WIshlistFunctions";
 
 export const useWishlist = createContext();
 
 export function WishlistContext({ children }) {
 
     const initialWishlistValue = {
-        wishlistData: []
+        wishlistData: [],
+        mainWish: []
     }
 
     const wishlistReducer = (wishlistState,action) => {
         switch(action.type){
+            
+            case "getWish" : return {...wishlistState, mainWish: action.wishlist}
+
             case "add-to-wishlist": AddToWishlist(action).then(fullWishlist => {
               wishlistDispatch({type: "setWishlist", wishData: [...fullWishlist]})
             }); 
@@ -30,6 +34,10 @@ export function WishlistContext({ children }) {
     }
 
     const [ wishlistState, wishlistDispatch ] = useReducer(wishlistReducer, initialWishlistValue) 
+
+    useEffect(()=>{
+      fetchDetails(wishlistDispatch);
+    },[wishlistState?.wishlistData])
   
   return (
     <useWishlist.Provider value={{ wishlistState, wishlistDispatch }}>
