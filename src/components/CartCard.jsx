@@ -35,7 +35,7 @@ export default function CartCard({
         </div>
       </div>
       <div className="cart-card-part4">
-        <button>
+        <button onClick={() => cartDispatch({ type: "remove-from-cart", id: id})}>
           <img
             width="20"
             height="20"
