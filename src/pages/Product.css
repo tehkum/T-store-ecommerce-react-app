@@ -41,7 +41,7 @@
 
 .card-left{
     /* width: 350px; */
-    align-self: center;
+    /* align-self: center; */
 }
 
 .product-type{
@@ -64,12 +64,16 @@
     margin-left: 5px;
 }
 
+
 @media (min-width: 768px) {
     .card-right {
         width: 950px;
         display: grid;
         grid-template-columns: 450px 450px;
         gap: 5px;
+    }
+    .product-desc {
+        width: 400px;
     }
 
     

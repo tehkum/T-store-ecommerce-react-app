@@ -56,7 +56,7 @@ export function Product() {
         <p className="product-price-desc"><b>MRP in Indian currency:</b></p>
         <p className="product-price">{price} per pair</p>
         <p className="product-tax">[Inclusive of all taxes]</p>
-        <p>{description}</p>
+        <p className="product-desc">{description}</p>
         <p className="product-stock"><b>In stock:</b> Out of stock</p>
         <p><b>Sizes:</b></p>
         <div className="Size-box">

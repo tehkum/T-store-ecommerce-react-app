@@ -34,7 +34,7 @@
 
 .cart-card-part3 p{
     padding: 0 1rem;
-    border: 0.5px solid #666666;
+    /* border: 0.5px solid #666666; */
 
 }
 
@@ -48,4 +48,19 @@
 .cart-card-part4 {
     display: flex;
     flex-direction: column;
+}
+
+@media(max-width: 768px){
+    .cart-card {
+        width: 350px;
+        justify-content: space-between;
+    }
+
+    .cart-main-img {
+        width: 100%;
+    }
+
+    .cart-card-part1, .cart-card-part2, .cart-card-part3{
+        padding: 0 1rem;
+    }
 }

@@ -15,11 +15,11 @@ export default function CartCard({
 
   return (
     <div className="cart-card" key={id}>
-      <img src={image} alt="..." width="200px" height="223.83" />
+      <img src={image} alt="..." width="200px" height="223.83" className="cart-main-img"/>
       <div className="cart-card1">
         <div className="cart-card-part1">
           <h2>{title}</h2>
-          <p>{price}</p>
+          <p>₹{price}</p>
         </div>
         <div className="cart-card-part2">
           <p>{description}</p>

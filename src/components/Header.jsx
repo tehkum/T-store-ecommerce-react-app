@@ -3,10 +3,12 @@ import "./Header.css";
 import SearchBar from "./SearchBar";
 import logo from "../images/logo.png";
 import HamburgerMenu from "./HamburgerMenu";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { useCart } from "../context/CartProvider";
 
 export default function Header() {
-  const [ showHamburger, setHamburger ] = useState(false);
+  const [showHamburger, setHamburger] = useState(false);
+  const { cartState } = useContext(useCart);
 
   return (
     <>
@@ -33,8 +35,9 @@ export default function Header() {
         </span>
         <div className="icon-navs">
           <span className="navigation-links">
-            <div className="hidden-bar"><SearchBar /></div>
-            
+            <div className="hidden-bar">
+              <SearchBar />
+            </div>
           </span>
           <NavLink className="navigation-links link2" to="/Login">
             <img
@@ -51,7 +54,7 @@ export default function Header() {
               src="https://img.icons8.com/material-outlined/96/like--v1.png"
               alt="like--v1"
             />
-            <p>{"1"}</p>
+            <p>{cartState?.mainCart?.length ?? ""}</p>
           </NavLink>
           <NavLink className="navigation-links link3" to="/cart">
             <img
@@ -62,11 +65,29 @@ export default function Header() {
             />
           </NavLink>
         </div>
-        <div className="search-sm-hidden"><SearchBar/></div>
-        {showHamburger ? <button className="hamburger" onClick={()=>setHamburger(false)}><img width="30" height="30" src="https://img.icons8.com/ios/100/multiply.png" alt="multiply"/></button> : <button className="hamburger" onClick={()=>setHamburger(true)}>|||</button>}
-        
+        <div className="search-sm-hidden">
+          <SearchBar />
+        </div>
+        {showHamburger ? (
+          <button className="hamburger" onClick={() => setHamburger(false)}>
+            <img
+              width="30"
+              height="30"
+              src="https://img.icons8.com/ios/100/multiply.png"
+              alt="multiply"
+            />
+          </button>
+        ) : (
+          <button className="hamburger" onClick={() => setHamburger(true)}>
+            |||
+          </button>
+        )}
       </nav>
-      {showHamburger &&  <div className="hidden-big"><HamburgerMenu hamSetter={setHamburger}/></div>}
+      {showHamburger && (
+        <div className="hidden-big">
+          <HamburgerMenu hamSetter={setHamburger} />
+        </div>
+      )}
     </>
   );
 }
