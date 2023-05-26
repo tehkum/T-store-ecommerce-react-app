@@ -22,16 +22,16 @@ export default function Header() {
           <img src={logo} alt="..." width="50px" />
         </NavLink>
         <span className="product-link">
-          <NavLink className="link1" to="/products/shoes">
+          <NavLink className="link1" to="/products/shoes" style={({isActive})=> isActive ? {fontWeight: "bold"}: {fontWeight: "normal"}}>
             SHOES
           </NavLink>
-          <NavLink className="link1" to="/products/t-shirts">
+          <NavLink className="link1" to="/products/t-shirts" style={({isActive})=> isActive ? {fontWeight: "bold"}: {fontWeight: "normal"}}>
             T-SHIRT
           </NavLink>
-          <NavLink className="link1" to="/products/lowers">
+          <NavLink className="link1" to="/products/lowers" style={({isActive})=> isActive ? {fontWeight: "bold"}: {fontWeight: "normal"}}>
             LOWER
           </NavLink>
-          <NavLink className="link1" to="/products/football">
+          <NavLink className="link1" to="/products/football" style={({isActive})=> isActive ? {fontWeight: "bold"}: {fontWeight: "normal"}}>
             FOOTBALL
           </NavLink>
         </span>
