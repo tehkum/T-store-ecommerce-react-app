@@ -3,6 +3,7 @@ import { useContext } from "react";
 import WishlistProductCard from "../../components/wishlistProductCard";
 import "../Products.css";
 import { useWishlist } from "../../context/WishlistProvider";
+import LoadingCard from "../../components/LoadingCard";
 
 
 export function Wishlist() {
@@ -20,7 +21,7 @@ export function Wishlist() {
       </div>
       {/* *************************************************************************** */}
       <div className="products-container">
-        {wishlistState?.mainWish?.map((item) => {
+        {wishlistState?.wishlistLoad ? <><LoadingCard/><LoadingCard/><LoadingCard/><LoadingCard/><LoadingCard/><LoadingCard/></> : wishlistState?.mainWish?.map((item) => {
           const { _id, title, type, price, image } = item;
           return (
             <WishlistProductCard

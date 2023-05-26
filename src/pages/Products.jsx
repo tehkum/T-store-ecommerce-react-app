@@ -6,12 +6,12 @@ import ProductCard from "../components/ProductCard";
 import "./Products.css";
 import { useFilter } from "../context/filterProvider";
 import FilterBox from "../components/FilterBox";
+import LoadingCard from "../components/LoadingCard";
 
 export function Products() {
   const { productCat } = useParams();
   const { productData, loading } = useContext(useProducts);
   const { filterState } = useContext(useFilter);
-
 
   const filteredProduct =
     productCat === "all"
@@ -30,11 +30,19 @@ export function Products() {
     ? priceFilter.filter(({ rating }) => rating >= +filterState.starFilterValue)
     : priceFilter;
 
-  const searchFilter = filterState.searchFilterValue ? starFilter.filter(({title})=> title.toLowerCase().includes(filterState.searchFilterValue.toLowerCase())) : starFilter 
+  const searchFilter = filterState.searchFilterValue
+    ? starFilter.filter(({ title }) =>
+        title
+          .toLowerCase()
+          .includes(filterState.searchFilterValue.toLowerCase())
+      )
+    : starFilter;
 
-  const rangeFilter = searchFilter.filter(({price})=> +price <= +filterState.rangeValue);
+  const rangeFilter = searchFilter.filter(
+    ({ price }) => +price <= +filterState.rangeValue
+  );
 
-  return (loading ? <h1>...loading</h1> :
+  return (
     <>
       <div className="top-products-desc">
         <h1>
@@ -42,21 +50,35 @@ export function Products() {
         </h1>
       </div>
       {/* *************************************************************************** */}
-      <FilterBox productData={productData} productCat={productCat}/>
+      <FilterBox productData={productData} productCat={productCat} />
       {/* *************************************************************************** */}
       <div className="products-container">
-        {rangeFilter.map((item) => {
-          const { _id, title, type, price, image } = item;
-          return (
-            <ProductCard
-              id={_id}
-              image={image}
-              price={price}
-              category={type}
-              title={title}
-            />
-          );
-        })}
+        {loading ? (
+          <>
+            <LoadingCard />
+            <LoadingCard />
+            <LoadingCard />
+            <LoadingCard />
+            <LoadingCard />
+            <LoadingCard />
+            <LoadingCard />
+            <LoadingCard />
+            <LoadingCard />
+          </>
+        ) : (
+          rangeFilter.map((item) => {
+            const { _id, title, type, price, image } = item;
+            return (
+              <ProductCard
+                id={_id}
+                image={image}
+                price={price}
+                category={type}
+                title={title}
+              />
+            );
+          })
+        )}
       </div>
     </>
   );
