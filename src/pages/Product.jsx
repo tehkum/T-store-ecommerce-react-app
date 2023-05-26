@@ -32,7 +32,7 @@ export function Product() {
   const clickHandler = async () => {
     setCartLoading(true)
     await cartDispatch({type:"add-to-cart", data: specificProduct});
-    setCartLoading(false);
+    setInterval(setCartLoading(false),4000);
   }
   const wishlistClickHandler = async () => {
     setWishlistLoading(true)
@@ -40,7 +40,7 @@ export function Product() {
     setWishlistLoading(false);
   }
 
-  const { title, type, image, image2, image3, image4, price, description } = specificProduct;
+  const { title, type, image, image2, image3, image4, price, description, stock } = specificProduct;
 
   return <>
     <div className="container-product">
@@ -57,7 +57,7 @@ export function Product() {
         <p className="product-price">{price} per pair</p>
         <p className="product-tax">[Inclusive of all taxes]</p>
         <p className="product-desc">{description}</p>
-        <p className="product-stock"><b>In stock:</b> Out of stock</p>
+        <p className="product-stock"><b>In stock:</b> {stock}</p>
         <p><b>Sizes:</b></p>
         <div className="Size-box">
           <p>4</p>

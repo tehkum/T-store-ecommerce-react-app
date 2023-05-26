@@ -8,7 +8,7 @@ export function CartPage() {
   const { cartState } = useContext(useCart);
 
   
-  const totalPrice = cartState?.mainCart?.reduce((total,{price, qty})=> qty*(total + price) ,0)
+  const totalPrice = Math.floor(cartState?.mainCart?.reduce((total,{price, qty})=> qty*(total + price) ,0))
 
   const navigate = useNavigate()
 
