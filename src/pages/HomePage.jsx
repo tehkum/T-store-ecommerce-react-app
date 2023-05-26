@@ -12,6 +12,7 @@ import shoes from "../images/shoes.jpg";
 import tshirt1 from "../images/tshirt1.png";
 import jeans from "../images/jeans.png";
 import { useNavigate } from "react-router-dom";
+import LoadingCard from "../components/LoadingCard";
 
 export function HomePage() {
 
@@ -50,7 +51,7 @@ export function HomePage() {
       <div className="box-no3-home">
         <h1>Still interested?</h1>
         <div className="slider1-products-home">
-          {loading ? <h3>...loading</h3> : productData.filter(({category})=> category==="shoes" ).map((item)=>{
+          {loading ? <><LoadingCard /><LoadingCard /><LoadingCard /><LoadingCard /><LoadingCard /><LoadingCard /><LoadingCard /></> : productData.filter(({category})=> category==="shoes" ).map((item)=>{
             const {_id, title, image, type, price} = item;
             return <ProductCard id={_id} image={image} title={title} price={price} category={type}/>
           } ) }

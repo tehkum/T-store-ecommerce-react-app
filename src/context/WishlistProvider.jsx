@@ -33,7 +33,7 @@ export function WishlistContext({ children }) {
               return {...wishlistState, wishlistLoad: true}
             
             case "unload":
-              return {...wishlistState, wishlistLoad: true}
+              return {...wishlistState, wishlistLoad: false}
   
             default: return {...wishlistState}
         }

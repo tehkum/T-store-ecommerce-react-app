@@ -38,17 +38,18 @@ export const addToCart = async (action) => {
 
 export const fetchCart = async (cartDispatch) => {
     try {
-      const {data} = await axios.get("/api/user/cart",{
-        headers: { 
-          authorization : localStorage.getItem("encodedToken")
-        }
-      })
-      cartDispatch({type: "getCart", cart: await data.cart});
-      
+        cartDispatch({type: "load"})
+        setTimeout(async () => {
+            const {data} = await axios.get("/api/user/cart",{
+                headers: { 
+                  authorization : localStorage.getItem("encodedToken")
+                }
+              })
+              cartDispatch({type: "getCart", cart: await data.cart});
+              cartDispatch({type: "unload"})
+        },1500)      
     } catch (error) {
       console.log(error)
-    }finally{
-        cartDispatch({type: "unload"})
     }
   }
 
