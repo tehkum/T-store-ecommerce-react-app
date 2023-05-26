@@ -19,14 +19,20 @@ nav {
   font-size: small;
 }
 
-.link2{
+.link2, .link3{
   position: relative;
 }
 
-.link2 p {
+.link2 p, .link3 p {
   position: absolute;
   top:0;
   right:0;
+  background-color: black;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  text-align: center;
+  color: white
 }
 
 .hamburger {

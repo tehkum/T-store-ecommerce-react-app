@@ -47,10 +47,10 @@ export const fetchCart = async (cartDispatch) => {
       
     } catch (error) {
       console.log(error)
+    }finally{
+        cartDispatch({type: "unload"})
     }
   }
-
-  
 
 
 export const removeFromCart = async (action) => {

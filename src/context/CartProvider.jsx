@@ -34,6 +34,10 @@ export function CartProvider({ children }) {
       })
       break;
 
+      case "load" : return {...cartState, cartLoading: true}
+
+      case "unload" : return {...cartState, cartLoading: false}
+
       default:
         return { ...cartState };
     }
@@ -41,7 +45,8 @@ export function CartProvider({ children }) {
 
   const [cartState, cartDispatch] = useReducer(CartReducer, {
     cartData: [],
-    mainCart: []
+    mainCart: [],
+    cartLoading: false,
   });
 
   useEffect(()=>{

@@ -9,7 +9,7 @@ import FilterBox from "../components/FilterBox";
 
 export function Products() {
   const { productCat } = useParams();
-  const { productData } = useContext(useProducts);
+  const { productData, loading } = useContext(useProducts);
   const { filterState } = useContext(useFilter);
 
 
@@ -34,7 +34,7 @@ export function Products() {
 
   const rangeFilter = searchFilter.filter(({price})=> +price <= +filterState.rangeValue);
 
-  return (
+  return (loading ? <h1>...loading</h1> :
     <>
       <div className="top-products-desc">
         <h1>

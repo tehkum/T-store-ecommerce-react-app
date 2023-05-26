@@ -17,7 +17,7 @@ export function CartPage() {
   }
 
 
-  return <>
+  return (cartState?.cartLoading ? <><h1>...loading</h1></> :<>
     <div className="cartpage">
       <div className="left-cart-area">
         <h1>Your Cart</h1>
@@ -54,5 +54,5 @@ export function CartPage() {
         </div>
       </div>
     </div>
-  </>;
+  </>);
 }

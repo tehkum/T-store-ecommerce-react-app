@@ -7,7 +7,8 @@ export function WishlistContext({ children }) {
 
     const initialWishlistValue = {
         wishlistData: [],
-        mainWish: []
+        mainWish: [],
+        wishlistLoad: false
     }
 
     const wishlistReducer = (wishlistState,action) => {
@@ -27,7 +28,12 @@ export function WishlistContext({ children }) {
 
             case "setWishlist": 
             return {...wishlistState, wishlistData: action.wishData}
+
+            case "load":
+              return {...wishlistState, wishlistLoad: true}
             
+            case "unload":
+              return {...wishlistState, wishlistLoad: true}
   
             default: return {...wishlistState}
         }

@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 
 export function HomePage() {
 
-  const { productData } = useContext(useProducts);
+  const { productData, loading } = useContext(useProducts);
   const navigate = useNavigate();
 
 
@@ -50,10 +50,10 @@ export function HomePage() {
       <div className="box-no3-home">
         <h1>Still interested?</h1>
         <div className="slider1-products-home">
-          {productData.filter(({category})=> category==="shoes" ).map((item)=>{
+          {loading ? <h3>...loading</h3> : productData.filter(({category})=> category==="shoes" ).map((item)=>{
             const {_id, title, image, type, price} = item;
             return <ProductCard id={_id} image={image} title={title} price={price} category={type}/>
-          } )}
+          } ) }
         </div>
       </div>
       {/* ************************************************** */}

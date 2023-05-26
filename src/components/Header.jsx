@@ -5,10 +5,12 @@ import logo from "../images/logo.png";
 import HamburgerMenu from "./HamburgerMenu";
 import { useContext, useState } from "react";
 import { useCart } from "../context/CartProvider";
+import { useWishlist } from "../context/WishlistProvider";
 
 export default function Header() {
   const [showHamburger, setHamburger] = useState(false);
   const { cartState } = useContext(useCart);
+  const { wishlistState } = useContext(useWishlist);
 
   return (
     <>
@@ -54,7 +56,7 @@ export default function Header() {
               src="https://img.icons8.com/material-outlined/96/like--v1.png"
               alt="like--v1"
             />
-            <p>{cartState?.mainCart?.length ?? ""}</p>
+            <p>{wishlistState?.mainWish?.length ?? ""}</p>
           </NavLink>
           <NavLink className="navigation-links link3" to="/cart">
             <img
@@ -63,6 +65,7 @@ export default function Header() {
               src="https://img.icons8.com/material-outlined/96/shopping-bag--v1.png"
               alt="shopping-bag--v1"
             />
+            <p>{cartState?.mainCart?.length ?? ""}</p>
           </NavLink>
         </div>
         <div className="search-sm-hidden">
