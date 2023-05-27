@@ -1,82 +1,95 @@
 import { createContext, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
+import axios from "axios";
 
 export const useAuth = createContext();
 
 export function AuthContext({ children }) {
   const [loginDetails, setLoginDetails] = useState({
     email: "",
-    password: ""
+    password: "",
   });
   const [signupDetails, setSignupDetails] = useState({
     password: "",
     email: "",
     name: "",
-    phone: ""
-  })
+    phone: "",
+  });
   const [isLoggedIn, setLoggenIn] = useState(false);
-  // const [location, setLocation] = useState
+  const [loginError, setLoginError] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
 
   const loginHandler = async () => {
     try {
       const testCred = {
-        "email": "adarshbalika@gmail.com",
-        "password": "adarshbalika"
+        email: "adarshbalika@gmail.com",
+        password: "adarshbalika",
+      };
+      const { data, status } = await axios.post("/api/auth/login", testCred);
+      if (status === 200) {
+        localStorage.setItem("encodedToken", data.encodedToken);
+        setLoggenIn(true);
+        navigate(location?.state?.from?.pathname || "/");
       }
-      const res = await fetch("/api/auth/login",{
-        method: "POST",
-        body: JSON.stringify(testCred)
-      });
-      // console.log(await res.json());
-      const { encodedToken } = await res.json();
-      localStorage.setItem("encodedToken", encodedToken);
-      setLoggenIn(true);
-      navigate(location?.state?.from?.pathname || "/");
-      
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
   const mainLoginHandler = async () => {
     try {
-      const res = await fetch("/api/auth/login",{
-        method: "POST",
-        body: JSON.stringify(loginDetails)
-      });
-      const { encodedToken } = await res.json();
-      localStorage.setItem("encodedToken", encodedToken);
-      setLoggenIn(true);
-      navigate(location?.state?.from?.pathname || "/");
-      
+      const res = await axios.post("/api/auth/login", loginDetails);
+      console.log(res)
+      if (res.status === 200) {
+        localStorage.setItem("encodedToken", res.data.encodedToken);
+        setLoggenIn(true);
+        navigate(location?.state?.from?.pathname || "/");
+      }
     } catch (error) {
-      console.log(error)
+      console.log(error);
+      if( error.status === 401 )
+      {
+        setLoginError("WRONG PASSWORD")
+      } else {
+        setLoginError("USER NOT FOUND")
+      }
     }
-  }
+  };
 
   const setSignup = (type, data) => {
     signupDetails[type] = data;
-    console.log(signupDetails, data)
-    setSignupDetails({...signupDetails})
-  }
+    console.log(signupDetails, data);
+    setSignupDetails({ ...signupDetails });
+  };
 
   const signupHandler = async () => {
     try {
       const res = await fetch("/api/auth/signup", {
         method: "POST",
-        data: JSON.stringify(signupDetails)
-      })
-      const { encodedToken } = await res.json()
-      localStorage.setItem("encodedToken", encodedToken)
-      navigate("/")
+        data: JSON.stringify(signupDetails),
+      });
+      const { encodedToken } = await res.json();
+      localStorage.setItem("encodedToken", encodedToken);
+      navigate("/");
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   return (
-    <useAuth.Provider value={{ isLoggedIn, setLoggenIn, loginHandler, setLoginDetails, loginDetails, signupHandler, setSignup, mainLoginHandler }}>
+    <useAuth.Provider
+      value={{
+        isLoggedIn,
+        setLoggenIn,
+        loginHandler,
+        setLoginDetails,
+        loginDetails,
+        signupHandler,
+        setSignup,
+        mainLoginHandler,
+        loginError
+      }}
+    >
       {children}
     </useAuth.Provider>
   );
