@@ -12,39 +12,58 @@ export default function ProductCard({ id, image, title, price, category }) {
 
   const clickAddHandler = async () => {
     setButton(true);
-    setTimeout(async ()=> {
-      await wishlistDispatch({type: "add-to-wishlist", data: data});
+    await wishlistDispatch({ type: "add-to-wishlist", data: data });
+    setTimeout(async () => {
       setButton(false);
-    }, 1500)
-  }
+    }, 1500);
+  };
+  
   const clickRemoveHandler = async () => {
     setButton(true);
-    setTimeout(async ()=> {
-      await wishlistDispatch({type: "remove-from-wishlist", data: data});
+    await wishlistDispatch({ type: "remove-from-wishlist", data: data });
+    setTimeout(async () => {
       setButton(false);
-    }, 1500)
-  }
+    }, 1500);
+  };
 
   const data = {
     _id: id,
     image: image,
     title: title,
     price: price,
-    category: category
-  }
-  
+    category: category,
+  };
 
-  const wishButton = wishlistState?.mainWish?.find(({_id})=>_id=== data._id) ? <img src={dark} alt="..." className="wish-logo" width="20px" height="20px" onClick={clickRemoveHandler} /> : <img src={light} alt="..." className="wish-logo" width="20px" height="20px" onClick={clickAddHandler} /> ;
+  const wishButton = wishlistState?.mainWish?.find(
+    ({ _id }) => _id === data._id
+  ) ? (
+    <img
+      src={dark}
+      alt="..."
+      className="wish-logo"
+      width="20px"
+      height="20px"
+      onClick={clickRemoveHandler}
+    />
+  ) : (
+    <img
+      src={light}
+      alt="..."
+      className="wish-logo"
+      width="20px"
+      height="20px"
+      onClick={clickAddHandler}
+    />
+  );
 
   return (
     <div className="product-container">
       <div className="product-img">
-      <Link to={`/product/${id}`} >
-      <img className="img-display" src={image} alt={title} />
-       </Link>
-      {/* {showButton ? <img src={h2} alt="..." className="wish-logo" width="20px" height="20px"/> : <img src={h2} alt="..." className="wish-logo" width="20px" height="20px" onClick={clickHandler} />}  */}
-      {showButton ? <></> : wishButton}
-      <p className="price-product">{price}</p>
+        <Link to={`/product/${id}`}>
+          <img className="img-display" src={image} alt={title} />
+        </Link>
+        {showButton ? <></> : wishButton}
+        <p className="price-product">{price}</p>
       </div>
       <p className="title-product">{title}</p>
       <p className="category-product">{category}</p>
