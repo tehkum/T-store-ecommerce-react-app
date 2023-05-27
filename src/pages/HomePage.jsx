@@ -15,10 +15,8 @@ import { useNavigate } from "react-router-dom";
 import LoadingCard from "../components/LoadingCard";
 
 export function HomePage() {
-
   const { productData, loading } = useContext(useProducts);
   const navigate = useNavigate();
-
 
   return (
     <>
@@ -28,9 +26,14 @@ export function HomePage() {
           <b>BUY MORE PAY LESS.</b>
         </p>
         <div>
-          <CardPattern1 text={"shoes"} image={"https://res.cloudinary.com/dbehxf29s/image/upload/v1684593638/shoeprof1_ot6zqo.webp"} />
-          <CardPattern1 text={"tshirts"} image={tshirt1}/>
-          <CardPattern1 text={"lowers"} image={jeans}/>
+          <CardPattern1
+            text={"shoes"}
+            image={
+              "https://res.cloudinary.com/dbehxf29s/image/upload/v1684593638/shoeprof1_ot6zqo.webp"
+            }
+          />
+          <CardPattern1 text={"tshirts"} image={tshirt1} />
+          <CardPattern1 text={"lowers"} image={jeans} />
         </div>
       </div>
       {/* *************************************** */}
@@ -42,7 +45,7 @@ export function HomePage() {
               Free-thinkers, culture-makers and originators - welcome to Club
               Originals.
             </p>
-            <button onClick={()=>navigate("/products/all")}>SHOP NOW </button>
+            <button onClick={() => navigate("/products/all")}>SHOP NOW </button>
           </div>
         </div>
         <img src={front1} alt="front page" className="card-no2-img" />
@@ -51,17 +54,39 @@ export function HomePage() {
       <div className="box-no3-home">
         <h1>Still interested?</h1>
         <div className="slider1-products-home">
-          {loading ? <><LoadingCard /><LoadingCard /><LoadingCard /><LoadingCard /><LoadingCard /><LoadingCard /><LoadingCard /></> : productData.filter(({category})=> category==="shoes" ).map((item)=>{
-            const {_id, title, image, type, price} = item;
-            return <ProductCard id={_id} image={image} title={title} price={price} category={type}/>
-          } ) }
+          {loading ? (
+            <>
+              <LoadingCard />
+              <LoadingCard />
+              <LoadingCard />
+              <LoadingCard />
+              <LoadingCard />
+              <LoadingCard />
+              <LoadingCard />
+            </>
+          ) : (
+            productData
+              .filter(({ category }) => category === "shoes")
+              .map((item) => {
+                const { _id, title, image, type, price } = item;
+                return (
+                  <ProductCard
+                    id={_id}
+                    image={image}
+                    title={title}
+                    price={price}
+                    category={type}
+                  />
+                );
+              })
+          )}
         </div>
       </div>
       {/* ************************************************** */}
       <div className="box-no4-home">
         <h1>WHAT ARE YOU SHOPPING?</h1>
         <div className="slider2-products-home">
-          <BigCard image={shoes} title={"SHOES"} cat={"shoes"}/>
+          <BigCard image={shoes} title={"SHOES"} cat={"shoes"} />
           <BigCard image={tshirt} title={"T-SHIRT"} cat={"t-shirts"} />
           <BigCard image={football} title={"FOOTBALL"} cat={"football"} />
         </div>
@@ -69,73 +94,40 @@ export function HomePage() {
       {/* *************************************************** */}
       <div className="box-no5-home">
         <div className="topic1-box5-home">
-          <h1>Heading of the topic1</h1>
+          <h1>About Tehkum Store</h1>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Pretium
-            aenean pharetra magna ac placerat. In aliquam sem fringilla ut morbi
-            tincidunt augue interdum. Ornare quam viverra orci sagittis eu
-            volutpat odio. Tristique risus nec feugiat in fermentum posuere.
-            Pretium quam vulputate dignissim suspendisse. Sit amet tellus cras
-            adipiscing enim eu turpis. Tincidunt arcu non sodales neque sodales
-            ut etiam. Eu ultrices vitae auctor eu augue ut lectus. Faucibus nisl
-            tincidunt eget nullam non. Rhoncus aenean vel elit scelerisque
-            mauris pellentesque. Sit amet consectetur adipiscing elit ut
-            aliquam. At erat pellentesque adipiscing commodo elit at imperdiet
-            dui. Sed turpis tincidunt id aliquet risus feugiat in. At in tellus
-            integer feugiat scelerisque varius morbi enim. Phasellus vestibulum
-            lorem sed risus ultricies tristique nulla. Risus pretium quam
-            vulputate dignissim suspendisse in est. Pellentesque elit
-            ullamcorper dignissim cras tincidunt. Aliquam eleifend mi in nulla
-            posuere sollicitudin. Dictum sit amet justo donec. Vestibulum mattis
-            ullamcorper velit sed ullamcorper morbi tincidunt ornare massa.
-            Tincidunt arcu non sodales neque sodales ut etiam sit. Sed felis
-            eget velit aliquet sagittis id consectetur. Risus nullam eget felis
-            eget. Odio euismod lacinia at quis risus sed vulputate. Vulputate ut
-            pharetra sit amet aliquam. Morbi tristique senectus et netus et
-            malesuada. Tempor id eu nisl nunc mi. Sit amet tellus cras
-            adipiscing enim eu. Dolor sed viverra ipsum nunc. Molestie nunc non
-            blandit massa enim. Auctor neque vitae tempus quam. Nisi est sit
-            amet facilisis magna. Tempus imperdiet nulla malesuada pellentesque
-            elit eget gravida cum sociis. Vestibulum lorem sed risus ultricies
-            tristique nulla aliquet enim tortor. Tempor orci dapibus ultrices in
-            iaculis nunc sed augue lacus. Egestas diam in arcu cursus euismod
-            quis viverra.
+            Tehkum Store is a multinational corporation that designs and
+            manufactures shoes, clothing and accessories. It is the largest
+            sportswear manufacturer in Europe and the second largest in the
+            world after Nike. Tehkum Store offers a home to the runner, the
+            basketball player, the soccer kid, and the fitness enthusiast. The
+            weekend hiker that loves to escape the city and the yoga teacher
+            that spreads the moves.
+          </p>
+          <p>
+            Tehkum Store designs for and with athletes of all kinds. Creators
+            who love to change the game. Challenge conventions. Break the rules
+            and define new ones. Then break them again. They supply teams and
+            individuals with athletic clothing pre-match to stay focused.
           </p>
         </div>
         <div className="topic2-box5-home">
-          <h1>Heading of the topic1</h1>
+          <h1>Why Tehkum Store?</h1>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Pretium
-            aenean pharetra magna ac placerat. In aliquam sem fringilla ut morbi
-            tincidunt augue interdum. Ornare quam viverra orci sagittis eu
-            volutpat odio. Tristique risus nec feugiat in fermentum posuere.
-            Pretium quam vulputate dignissim suspendisse. Sit amet tellus cras
-            adipiscing enim eu turpis. Tincidunt arcu non sodales neque sodales
-            ut etiam. Eu ultrices vitae auctor eu augue ut lectus. Faucibus nisl
-            tincidunt eget nullam non. Rhoncus aenean vel elit scelerisque
-            mauris pellentesque. Sit amet consectetur adipiscing elit ut
-            aliquam. At erat pellentesque adipiscing commodo elit at imperdiet
-            dui. Sed turpis tincidunt id aliquet risus feugiat in. At in tellus
-            integer feugiat scelerisque varius morbi enim. Phasellus vestibulum
-            lorem sed risus ultricies tristique nulla. Risus pretium quam
-            vulputate dignissim suspendisse in est. Pellentesque elit
-            ullamcorper dignissim cras tincidunt. Aliquam eleifend mi in nulla
-            posuere sollicitudin. Dictum sit amet justo donec. Vestibulum mattis
-            ullamcorper velit sed ullamcorper morbi tincidunt ornare massa.
-            Tincidunt arcu non sodales neque sodales ut etiam sit. Sed felis
-            eget velit aliquet sagittis id consectetur. Risus nullam eget felis
-            eget. Odio euismod lacinia at quis risus sed vulputate. Vulputate ut
-            pharetra sit amet aliquam. Morbi tristique senectus et netus et
-            malesuada. Tempor id eu nisl nunc mi. Sit amet tellus cras
-            adipiscing enim eu. Dolor sed viverra ipsum nunc. Molestie nunc non
-            blandit massa enim. Auctor neque vitae tempus quam. Nisi est sit
-            amet facilisis magna. Tempus imperdiet nulla malesuada pellentesque
-            elit eget gravida cum sociis. Vestibulum lorem sed risus ultricies
-            tristique nulla aliquet enim tortor. Tempor orci dapibus ultrices in
-            iaculis nunc sed augue lacus. Egestas diam in arcu cursus euismod
-            quis viverra.
+            There are many reasons why you might want to buy from Tehkum Store.
+            One reason is that they offer a wide range of products for athletes
+            of all kinds. Whether you’re a runner, basketball player, soccer
+            kid, or fitness enthusiast, Tehkum Store has something for you. They
+            also have a range of products for the weekend hiker and the yoga
+            teacher .
+          </p>
+          <p>
+            Another reason to buy from Tehkum Store is their commitment to
+            sustainability. They partner with the best in the industry to
+            co-create sports apparel and style that match their customers’
+            athletic needs while keeping sustainability in mind . This means
+            that when you buy from Tehkum Store, you can feel good about your
+            purchase knowing that it was made with the environment in mind.
           </p>
         </div>
       </div>

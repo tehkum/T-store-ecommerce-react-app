@@ -47,7 +47,7 @@ export function AuthContext({ children }) {
       }
     } catch (error) {
       console.log(error);
-      if( error.status === 401 )
+      if( error.request.status === 401 )
       {
         setLoginError("WRONG PASSWORD")
       } else {

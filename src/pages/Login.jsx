@@ -1,10 +1,32 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthProvider";
 import "./AuthPages.css";
 
 export default function LoginPage() {
-  const { loginHandler, loginDetails,setLoginDetails, mainLoginHandler } = useContext(useAuth);
+  const { loginHandler, loginDetails,setLoginDetails, mainLoginHandler, loginError } = useContext(useAuth);
+  const [ isEmpty , setEmpty ] = useState({
+    loginEmail : false,
+    emptyMessage: "",
+    loginPass: false,
+  });
+
+  const clickHandler = () => {
+    if(!loginDetails.email.length || !loginDetails.password.length){
+    if(!loginDetails.email.length){
+      if(!loginDetails.password.length){
+        setEmpty({loginEmail : true, loginPass: true, emptyMessage: "Email and password field empty"})
+      }else{
+        setEmpty({...isEmpty, loginEmail: true, emptyMessage: "Email field empty"})
+      }
+    }
+    else if(!loginDetails.password.length){
+      setEmpty({...isEmpty, loginPass: true, emptyMessage: "Password field empty"})
+    }}
+    else{
+      mainLoginHandler();
+    }
+  }
 
 
   return (
@@ -21,30 +43,46 @@ export default function LoginPage() {
           </p>
           <label htmlFor="login-mail">
             <input
+              style={isEmpty.loginEmail ? {border: "2px solid red"} : {border: "1px solid #666666"}}
               type="email"
               id="login-mail"
               placeholder="Email*"
               className="field-inp"
-              onChange={event=>setLoginDetails({...loginDetails, email: event.target.value})}
+              onChange={event=>{
+                setEmpty({
+                  loginEmail : false,
+                  emptyMessage: "",
+                })
+                setLoginDetails({...loginDetails, email: event.target.value})
+              }}
             />
           </label>
           <label htmlFor="login-pass">
             <input
+              style={isEmpty.loginPass ? {border: "2px solid red"} : {border: "1px solid #666666"}}
               type="passsword"
               id="login-pass"
               placeholder="Password*"
               className="field-inp"
-              onChange={event=>setLoginDetails({...loginDetails, password: event.target.value})}
+              onChange={event=>{
+                setEmpty({
+                  emptyMessage: "",
+                  loginPass: false,
+                })
+                setLoginDetails({...loginDetails, password: event.target.value})
+              }}
             />
           </label>
           <label htmlFor="keep-log-in">
             <input type="checkbox" id="keep-log-in" />
             Keep me logged in
           </label>
-          <button className="button-login btn-secondary" onClick={mainLoginHandler}>Login</button>
+          <p style={{color: "red"}}>{isEmpty?.emptyMessage?.length ? isEmpty?.emptyMessage : ""}</p>
+          <button className="button-login btn-secondary" onClick={clickHandler}>Login</button>
           <button className="button-login btn-primary" onClick={loginHandler}>
             Login with test credentials
           </button>
+          <p style={{color: "red"}}>{loginError ? loginError : ""}</p>
           <p>
             By clicking "LOG IN", I agree to the Terms & Conditions, the adiClub
             Terms & Conditions and the adidas Privacy Policy.
