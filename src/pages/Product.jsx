@@ -31,15 +31,15 @@ export function Product() {
 
   const clickHandler = async () => {
     setCartLoading(true)
+    await cartDispatch({type:"add-to-cart", data: specificProduct});
     setTimeout(async () => {
-      await cartDispatch({type:"add-to-cart", data: specificProduct});  
       setCartLoading(false)
     },1500)
   }
   const wishlistClickHandler = async () => {
     setWishlistLoading(true)
-    setTimeout(async ()=> {
     await wishlistDispatch({type:"add-to-wishlist", data: specificProduct})
+    setTimeout(async ()=> {
     setWishlistLoading(false);
     },1500)
   }

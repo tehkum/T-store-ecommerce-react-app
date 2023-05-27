@@ -17,7 +17,7 @@ export default function ProductCard({ id, image, title, price, category }) {
       setButton(false);
     }, 1500);
   };
-  
+
   const clickRemoveHandler = async () => {
     setButton(true);
     await wishlistDispatch({ type: "remove-from-wishlist", data: data });
@@ -54,7 +54,9 @@ export default function ProductCard({ id, image, title, price, category }) {
       height="20px"
       onClick={clickAddHandler}
     />
-  );
+  )
+
+  console.log(localStorage.getItem('encodedToken') ? "true" : "f")
 
   return (
     <div className="product-container">
@@ -62,7 +64,7 @@ export default function ProductCard({ id, image, title, price, category }) {
         <Link to={`/product/${id}`}>
           <img className="img-display" src={image} alt={title} />
         </Link>
-        {showButton ? <></> : wishButton}
+        {showButton ? <></> : wishButton }
         <p className="price-product">{price}</p>
       </div>
       <p className="title-product">{title}</p>
