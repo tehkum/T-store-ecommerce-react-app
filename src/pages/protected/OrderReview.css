@@ -1,0 +1,9 @@
+.order-section {
+    margin: 0.5em 4rem;
+}
+
+.order-section2{
+    display: flex;
+    flex-Wrap: wrap;
+    gap: 1rem;
+}

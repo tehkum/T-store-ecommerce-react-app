@@ -12,6 +12,7 @@ import Mockman from "mockman-js";
 import Address from "../pages/protected/Address";
 import { useContext } from "react";
 import { useAuth } from "../context/AuthProvider";
+import OrderReview from "../pages/protected/OrderReview";
 
 export default function RouterRoutes() {
   const { isLoggedIn } = useContext(useAuth);
@@ -27,6 +28,14 @@ export default function RouterRoutes() {
         element={
           <RequireAuth>
             <CartPage />
+          </RequireAuth>
+        }
+      />
+      <Route 
+        path="/order-review"
+        element={
+          <RequireAuth>
+            <OrderReview />
           </RequireAuth>
         }
       />
