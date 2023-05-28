@@ -1,0 +1,20 @@
+.alert-box {
+    position: fixed;
+    top: 120px;
+    right: 30px;
+    display: inline;
+    z-index: 20;
+    background-color: black;
+    color: white;
+    padding: 0.5rem 1rem;
+    width: 300px;
+    overflow: auto;
+}
+
+.alert-hidden {
+    display: none;
+}
+
+.alert-show {
+    display: block;
+}
