@@ -1,9 +1,16 @@
 .order-section {
-    margin: 0.5em 4rem;
+    margin: 0.5rem;
 }
 
 .order-section2{
     display: flex;
     flex-Wrap: wrap;
     gap: 1rem;
+    justify-content: center;
+}
+
+@media (min-width: 768px) {
+    .order-section {
+        margin: 0.5rem 4rem;
+    }
 }
