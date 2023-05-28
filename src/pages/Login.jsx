@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthProvider";
 import "./AuthPages.css";
+import AlertBox from "../components/AlertBox";
 
 export default function LoginPage() {
   const { loginHandler, loginDetails,setLoginDetails, mainLoginHandler, loginError } = useContext(useAuth);
@@ -10,8 +11,10 @@ export default function LoginPage() {
     emptyMessage: "",
     loginPass: false,
   });
+  const [ buttonClicked, setClicked ] = useState(false)
 
   const clickHandler = () => {
+    setClicked(!buttonClicked);
     if(!loginDetails.email.length || !loginDetails.password.length){
     if(!loginDetails.email.length){
       if(!loginDetails.password.length){
@@ -77,12 +80,12 @@ export default function LoginPage() {
             <input type="checkbox" id="keep-log-in" />
             Keep me logged in
           </label>
-          <p style={{color: "red"}}>{isEmpty?.emptyMessage?.length ? isEmpty?.emptyMessage : ""}</p>
+          {/* <p style={{color: "red"}}>{isEmpty?.emptyMessage?.length ? isEmpty?.emptyMessage : ""}</p> */}
           <button className="button-login btn-secondary" onClick={clickHandler}>Login</button>
           <button className="button-login btn-primary" onClick={loginHandler}>
             Login with test credentials
           </button>
-          <p style={{color: "red"}}>{loginError ? loginError : ""}</p>
+          {/* <p style={{color: "red"}}>{loginError ? loginError : ""}</p> */}
           <p>
             By clicking "LOG IN", I agree to the Terms & Conditions, the adiClub
             Terms & Conditions and the adidas Privacy Policy.
@@ -115,6 +118,8 @@ export default function LoginPage() {
           <button className="button-login btn-primary">SHOP NOW</button>
         </div>
       </div>
+      <AlertBox alertMessage={isEmpty?.emptyMessage} clicked={buttonClicked}/>
+      <AlertBox alertMessage={loginError} clicked={buttonClicked}/>
     </>
   );
 }

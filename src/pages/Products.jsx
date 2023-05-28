@@ -67,7 +67,7 @@ export function Products() {
           </>
         ) : (
           rangeFilter.map((item) => {
-            const { _id, title, type, price, image } = item;
+            const { _id, title, type, price, image, description } = item;
             return (
               <ProductCard
                 id={_id}
@@ -75,6 +75,7 @@ export function Products() {
                 price={price}
                 category={type}
                 title={title}
+                description={description}
               />
             );
           })

@@ -7,6 +7,7 @@ import LoadingCartCard from "../../components/LoadingCartCard";
 
 export function CartPage() {
   const { cartState } = useContext(useCart);
+  
 
   const totalPrice = Math.floor(
     cartState?.mainCart?.reduce(

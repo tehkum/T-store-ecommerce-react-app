@@ -1,7 +1,10 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import "./CartCard.css";
 import { useCart } from "../context/CartProvider";
-import h2 from "../images/h2.png";
+import light from "../images/h2.png";
+import dark from "../images/h1.png";
+import { useWishlist } from "../context/WishlistProvider";
+import AlertBox from "./AlertBox";
 
 export default function CartCard({
   id,
@@ -12,6 +15,61 @@ export default function CartCard({
   qty,
 }) {
   const { cartDispatch } = useContext(useCart);
+  // const [showButton, setButton] = useState(false);
+  const [ btnClicked, setClicked ] = useState({
+    clicked: false,
+    message: ""
+  })
+
+  const { wishlistDispatch, wishlistState } = useContext(useWishlist);
+
+  const data = {
+    _id: id,
+    image: image,
+    title: title,
+    price: price
+  };
+
+  const clickAddHandler = async () => {
+    setClicked({clicked: !btnClicked?.clicked, message: "Added to wishlist"})
+    // setButton(true);
+    await wishlistDispatch({ type: "add-to-wishlist", data: data });
+    // setTimeout(async () => {
+    //   setButton(false);
+    // }, 1500);
+  };
+
+  const clickRemoveHandler = async () => {
+    setClicked({clicked: !btnClicked?.clicked, message: "Removed from wishlist"})
+    // setButton(true);
+    await wishlistDispatch({ type: "remove-from-wishlist", data: data });
+    // setTimeout(async () => {
+    //   setButton(false);
+    // }, 1500);
+  };
+
+
+  const wishButton = wishlistState?.mainWish?.find(
+    ({ _id }) => _id === data._id
+  ) ? (
+    <img
+      src={dark}
+      alt="..."
+      // className="wish-logo"
+      width="20px"
+      height="20px"
+      onClick={clickRemoveHandler}
+    />
+  ) : (
+    <img
+      src={light}
+      alt="..."
+      // className="wish-logo"
+      width="20px"
+      height="20px"
+      onClick={clickAddHandler}
+    />
+  )
 
   return (
     <div className="cart-card" key={id}>
@@ -35,25 +93,20 @@ export default function CartCard({
         </div>
       </div>
       <div className="cart-card-part4">
-        <button onClick={() => cartDispatch({ type: "remove-from-cart", id: id})}>
+        <button onClick={() =>cartDispatch({ type: "remove-from-cart", id: id})}>
           <img
             width="20"
+            onClick={()=>setClicked({clicked: !btnClicked.clicked, message: "Item removed"})}
             height="20"
             src="https://img.icons8.com/ios-filled/100/delete-sign--v1.png"
             alt="delete-sign--v1"
           />
         </button>
         <button>
-          <img
-            src={h2}
-            alt="..."
-            // className="wish-logo"
-            width="20"
-            height="20"
-            // onClick={clickHandler}
-          />
+          {wishButton}
         </button>
       </div>
+      <AlertBox alertMessage={btnClicked?.message} clicked={btnClicked?.clicked}/>
     </div>
   );
 }

@@ -4,6 +4,7 @@ import { useEffect, useState, useContext } from "react";
 import "./Product.css";
 import { useCart } from "../context/CartProvider";
 import { useWishlist } from "../context/WishlistProvider";
+import AlertBox from "../components/AlertBox";
 // import h1 from "../images/h1.png";
 // import h2 from "../images/h2.png";
 
@@ -14,6 +15,10 @@ export function Product() {
   const { wishlistDispatch } = useContext(useWishlist);
   const [cartLoading, setCartLoading] = useState(false);
   const [wishlistLoading, setWishlistLoading] = useState(false);
+  const [ btnClicked, setClicked ] = useState({
+    clicked: true,
+    message: "",
+  });
 
   const fetchDetails = async () => {
     try {
@@ -30,6 +35,7 @@ export function Product() {
   });
 
   const clickHandler = async () => {
+    setClicked({clicked: !btnClicked.clicked, message: "Added to Cart"})
     setCartLoading(true)
     await cartDispatch({type:"add-to-cart", data: specificProduct});
     setTimeout(async () => {
@@ -37,6 +43,7 @@ export function Product() {
     },1500)
   }
   const wishlistClickHandler = async () => {
+    setClicked({clicked: !btnClicked.clicked, message: "Added to Wishlist"})
     setWishlistLoading(true)
     await wishlistDispatch({type:"add-to-wishlist", data: specificProduct})
     setTimeout(async ()=> {
@@ -74,7 +81,8 @@ export function Product() {
           <p>8</p>
         </div>
         <button className="cart-btn" disabled={cartLoading} onClick={clickHandler}>Add to cart</button>
-        <button className="wishlist-btn" disabled={wishlistLoading} onClick={wishlistClickHandler}>ht</button>        
+        <button className="wishlist-btn" disabled={wishlistLoading} onClick={wishlistClickHandler}>ht</button> 
+        <AlertBox alertMessage={btnClicked.message} clicked={btnClicked.clicked}/>       
       </div>
     </div>
   </>;
