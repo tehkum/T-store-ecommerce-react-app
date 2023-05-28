@@ -8,9 +8,7 @@
   padding-bottom: 1rem;
   overflow: hidden;
 }
-.product-container:hover {
-  border: 0.5px solid black;
-}
+
 
 /* .product-container img {
   height: 45vw;
@@ -53,6 +51,19 @@
   position: relative;
 
 }
+
+.add-to-cart-btn {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 0.5rem 1rem;
+  background-color: transparent;
+}
+
+.product-container:hover {
+  border: 0.5px solid black;
+}
+
 
 @media (min-width: 740px) {
 }
