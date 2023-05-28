@@ -27,12 +27,13 @@ export function HomePage() {
         <div>
           <CardPattern1
             text={"shoes"}
+            link={"shoes"}
             image={
               "https://res.cloudinary.com/dbehxf29s/image/upload/v1684593638/shoeprof1_ot6zqo.webp"
             }
           />
-          <CardPattern1 text={"tshirts"} image={tshirt1} />
-          <CardPattern1 text={"lowers"} image={jeans} />
+          <CardPattern1 text={"tshirts"} image={tshirt1} link={"t-shirts"}/>
+          <CardPattern1 text={"lowers"} image={jeans} link={"lowers"}/>
         </div>
       </div>
       {/* *************************************** */}
