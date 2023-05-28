@@ -1,5 +1,4 @@
 import { useContext } from "react";
-
 import CardPattern1 from "../components/CardPattern1";
 import "./Homepage.css";
 import front1 from "../images/frontpage-box2.jpg";
