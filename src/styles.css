@@ -13,3 +13,6 @@ body {
   padding: 0 2rem;
 } */
 
+button:hover{
+  background-color: rgba(24, 21, 21, 0.612);
+}
