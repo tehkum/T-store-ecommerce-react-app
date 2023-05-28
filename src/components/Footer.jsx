@@ -48,36 +48,37 @@ export default function Footer() {
         </div>
         <div className="side-one-footer">
           <h3>Follow Me</h3>
-          <img
+          <a href="https://twitter.com/TehkumK"><img
             width="24"
             height="24"
             src="https://img.icons8.com/ios-filled/100/instagram-new--v1.png"
             alt="instagram-new--v1"
-          />
-          <img
+          /></a>
+          <a href="https://www.linkedin.com/in/tehkum-k-83941a149/"><img
             width="24"
             height="24"
             src="https://img.icons8.com/ios-filled/100/linkedin.png"
             alt="linkedin"
-          />
-          <img
+          /></a>
+          <a href="https://twitter.com/TehkumK">
+            <img
             width="24"
             height="24"
             src="https://img.icons8.com/ios-filled/100/twitter-squared.png"
             alt="twitter-squared"
-          />
-          <img
+          /></a>
+          <a href="https://twitter.com/TehkumK"><img
             width="24"
             height="24"
             src="https://img.icons8.com/ios-filled/100/facebook--v1.png"
             alt="facebook--v1"
-          />
-          <img
+          /></a>
+          <a href="https://www.github.com/tehkum"><img
             width="25"
             height="25"
             src="https://img.icons8.com/windows/96/github.png"
             alt="github"
-          />
+          /></a>
         </div>
       </div>
       {/* ********************************************************** */}
