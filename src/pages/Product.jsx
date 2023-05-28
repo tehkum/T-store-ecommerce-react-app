@@ -5,6 +5,7 @@ import "./Product.css";
 import { useCart } from "../context/CartProvider";
 import { useWishlist } from "../context/WishlistProvider";
 import AlertBox from "../components/AlertBox";
+import ProductPageLoad from "../components/ProductPageLoad";
 // import h1 from "../images/h1.png";
 // import h2 from "../images/h2.png";
 
@@ -13,6 +14,7 @@ export function Product() {
   const [specificProduct, setProduct] = useState({});
   const { cartDispatch } = useContext(useCart);
   const { wishlistDispatch } = useContext(useWishlist);
+  const [ productLoad, setProductLoading ] = useState(false);
   const [cartLoading, setCartLoading] = useState(false);
   const [wishlistLoading, setWishlistLoading] = useState(false);
   const [ btnClicked, setClicked ] = useState({
@@ -22,9 +24,11 @@ export function Product() {
 
   const fetchDetails = async () => {
     try {
+      setProductLoading(true);
       const data = await fetch(`/api/products/${productId}`);
       const fullData = await data.json();
-      setProduct(fullData.product);
+      setProduct(fullData?.product);
+      setTimeout(()=>setProductLoading(false),500);
     } catch (error) {
       console.log(error);
     }
@@ -32,7 +36,7 @@ export function Product() {
 
   useEffect(()=>{
     fetchDetails();
-  });
+  },[]);
 
   const clickHandler = async () => {
     setClicked({clicked: !btnClicked.clicked, message: "Added to Cart"})
@@ -53,7 +57,8 @@ export function Product() {
 
   const { title, type, image, image2, image3, image4, price, description, stock } = specificProduct;
 
-  return <>
+  return productLoad ? <ProductPageLoad /> :<>
+    {/* <ProductPageLoad /> */}
     <div className="container-product">
       <div className="card-right">
         <img src={image} alt="..."/>

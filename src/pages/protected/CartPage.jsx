@@ -1,12 +1,14 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import CartCard from "../../components/CartCard";
 import "./Cartpage.css";
 import { useCart } from "../../context/CartProvider";
 import { useNavigate } from "react-router-dom";
 import LoadingCartCard from "../../components/LoadingCartCard";
+import AlertBox from "../../components/AlertBox";
 
 export function CartPage() {
   const { cartState } = useContext(useCart);
+  const [ btnClicked, setClicked ] = useState({clicked: false, message: ""}) 
   
 
   const totalPrice = Math.floor(
@@ -19,7 +21,11 @@ export function CartPage() {
   const navigate = useNavigate();
 
   const wayToCheckout = () => {
+    if(cartState?.mainCart?.length){
     navigate("/address");
+    }else {
+      setClicked({clicked: !btnClicked?.clicked, message: "Cart is empty"})
+    }
   };
 
   return (
@@ -119,6 +125,7 @@ export function CartPage() {
           </div>
         </div>
       </div>
+      <AlertBox alertMessage={btnClicked?.message} clicked={btnClicked?.clicked}/>
     </>
   );
 }

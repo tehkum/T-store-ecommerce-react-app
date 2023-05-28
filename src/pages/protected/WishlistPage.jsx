@@ -16,13 +16,14 @@ export function Wishlist() {
           <i>WISHLIST</i>
         </h1>
         <p>
-          Total items: []
+          Total items: [{wishlistState?.mainWish?.lenght ?? 0}]
         </p>
+        {!wishlistState?.mainWish?.lenght && <h3>Wishlist is empty</h3>}
       </div>
       {/* *************************************************************************** */}
       <div className="products-container">
         {wishlistState?.wishlistLoad ? <><LoadingCard/><LoadingCard/><LoadingCard/><LoadingCard/><LoadingCard/><LoadingCard/></> : wishlistState?.mainWish?.map((item) => {
-          const { _id, title, type, price, image } = item;
+          const { _id, title, type, price, image, description } = item;
           return (
             <WishlistProductCard
               id={_id}
@@ -30,6 +31,7 @@ export function Wishlist() {
               price={price}
               category={type}
               title={title}
+              description={description}
             />
           );
         })}
