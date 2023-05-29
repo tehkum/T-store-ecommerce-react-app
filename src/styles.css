@@ -15,4 +15,5 @@ body {
 
 button:hover{
   background-color: rgba(24, 21, 21, 0.612);
+  cursor: pointer;
 }
