@@ -7,7 +7,7 @@ import LoadingCartCard from "../../components/LoadingCartCard";
 import AlertBox from "../../components/AlertBox";
 
 export function CartPage() {
-  const { cartState } = useContext(useCart);
+  const { cartState, cartDispatch } = useContext(useCart);
   const [ btnClicked, setClicked ] = useState({clicked: false, message: ""}) 
   
 
@@ -22,7 +22,8 @@ export function CartPage() {
 
   const wayToCheckout = () => {
     if(cartState?.mainCart?.length){
-    navigate("/address");
+      cartDispatch({type: "checkOut"});
+      navigate("/address");
     }else {
       setClicked({clicked: !btnClicked?.clicked, message: "Cart is empty"})
     }

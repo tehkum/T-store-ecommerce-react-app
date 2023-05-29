@@ -43,12 +43,16 @@
 .btn-secondary {
   background-color: white;
   box-shadow: 2px 2px 0 rgb(0, 0, 0);
+  margin: 1rem 0;
+  padding: 1rem;
 }
 
 .btn-primary {
   background-color: black;
   color: white;
   box-shadow: 2px 2px 0 rgb(0, 0, 0);
+  margin: 1rem 0;
+  padding: 1rem;
 }
 
 @media (min-width: 740px) {

@@ -2,9 +2,11 @@ import { useContext, useState } from "react";
 import "../AuthPages.css";
 import { useAddress } from "../../context/AddressProvider";
 import { useNavigate } from "react-router-dom";
+import { useCart } from "../../context/CartProvider";
 
 export default function Address() {
   const { addressState, addressDispatch } = useContext(useAddress);
+  const { cartDispatch } = useContext(useCart);
   const [selectAddress, setSelect] = useState({
     clicked: false,
     id: "",
@@ -13,6 +15,7 @@ export default function Address() {
   const navigate = useNavigate();
 
   const orderHandler = () =>{
+    cartDispatch({type: "clearCart"})
     navigate("/order-review")
   }
 

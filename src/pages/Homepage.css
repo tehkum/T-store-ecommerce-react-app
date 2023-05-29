@@ -41,6 +41,11 @@
   margin-bottom: 1rem;
 }
 
+.card-home2 button:hover {
+  color: white;
+  background-color: black;
+}
+
 .box-no2-home {
   display: flex;
   flex-wrap: wrap-reverse;
