@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import CartCard from "../../components/CartCard";
 import "./Cartpage.css";
 import { useCart } from "../../context/CartProvider";
@@ -17,6 +17,14 @@ export function CartPage() {
       0
     )
   );
+
+  useEffect(()=>{
+    window.scrollTo({
+      top: 100,
+      left: 100,
+      behavior: "smooth",
+    });
+  },[])
 
   const navigate = useNavigate();
 

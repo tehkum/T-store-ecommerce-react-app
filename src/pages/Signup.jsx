@@ -1,11 +1,19 @@
 import { Link } from "react-router-dom";
 import "./AuthPages.css";
 import { useAuth } from "../context/AuthProvider";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 
 export default function SignupPage() {
   const { signupHandler, setSignup } = useContext(useAuth);
+
+  useEffect(()=>{
+    window.scrollTo({
+      top: 100,
+      left: 100,
+      behavior: "smooth",
+    });
+  },[])
 
 
   return (

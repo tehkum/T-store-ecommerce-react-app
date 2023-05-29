@@ -12,7 +12,7 @@ export function FilterContext({ children }) {
         starFilterValue: "",
         searchFilterValue: "",
         showFilter: false,
-        rangeValue: "2000",
+        rangeValue: "5000",
         clearFilter: false
     }
 

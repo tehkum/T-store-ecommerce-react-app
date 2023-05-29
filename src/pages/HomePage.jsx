@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import CardPattern1 from "../components/CardPattern1";
 import "./Homepage.css";
 import front1 from "../images/frontpage-box2.jpg";
@@ -16,6 +16,15 @@ import LoadingCard from "../components/LoadingCard";
 export function HomePage() {
   const { productData, loading } = useContext(useProducts);
   const navigate = useNavigate();
+
+
+  useEffect(()=>{
+    window.scrollTo({
+      top: 100,
+      left: 100,
+      behavior: "smooth",
+    });
+  },[])
 
   return (
     <>

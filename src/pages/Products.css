@@ -1,6 +1,9 @@
 .top-products-desc{
     width: 80%;
     margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .top-products-desc h1{
@@ -23,19 +26,15 @@
 .btn-showFilter{
     width: 150px;
     height: 40px;
-    color: white;
-    background-color: black;
-    border: none;
-    box-shadow: 2px 2px 2px rgb(0,0,0);
-    margin: auto;
-}
-.btn-hideFilter{
-    width: 150px;
-    height: 40px;
+    color: black;
     background-color: white;
-    border: none;
+    border: 1px solid black;
     box-shadow: 2px 2px 2px rgb(0,0,0);
-    align-self: center;
+    margin-top: 20px;
+}
+
+.btn-showFilter:hover{
+    background-color: black;
 }
 
 .dis-hidden {

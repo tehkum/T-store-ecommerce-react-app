@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 import { useProducts } from "../context/ProductProvider";
 import ProductCard from "../components/ProductCard";
@@ -11,7 +11,7 @@ import LoadingCard from "../components/LoadingCard";
 export function Products() {
   const { productCat } = useParams();
   const { productData, loading } = useContext(useProducts);
-  const { filterState } = useContext(useFilter);
+  const { filterState, filterDispatch } = useContext(useFilter);
 
   const filteredProduct =
     productCat === "all"
@@ -42,12 +42,24 @@ export function Products() {
     ({ price }) => +price <= +filterState.rangeValue
   );
 
+  useEffect(()=>{
+    window.scrollTo({
+      top: 100,
+      left: 100,
+      behavior: "smooth",
+    });
+  },[])
+
   return (
     <>
       <div className="top-products-desc">
         <h1>
           <i>{productCat.toUpperCase()}</i>
         </h1>
+        <button
+        className={filterState.showFilter ? "dis-hidden" : "btn-showFilter"}
+        onClick={() => filterDispatch({ type: "filterTrue" })}
+      >Show Filter</button>
       </div>
       {/* *************************************************************************** */}
       <FilterBox productData={productData} productCat={productCat} />

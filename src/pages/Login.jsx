@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthProvider";
 import "./AuthPages.css";
@@ -30,6 +30,14 @@ export default function LoginPage() {
       mainLoginHandler();
     }
   }
+
+  useEffect(()=>{
+    window.scrollTo({
+      top: 100,
+      left: 100,
+      behavior: "smooth",
+    });
+  },[])
 
 
   return (

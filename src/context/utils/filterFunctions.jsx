@@ -18,7 +18,7 @@ export const filterReducer = (filterState, action) => {
         starFilter : false,
         starFilterValue: "",
         searchFilterValue: "",
-        rangeValue: "2000",
+        rangeValue: "5000",
         clearFilter: true
     }
 

@@ -38,6 +38,14 @@ export function Product() {
     fetchDetails();
   },[]);
 
+  useEffect(()=>{
+    window.scrollTo({
+      top: 100,
+      left: 100,
+      behavior: "smooth",
+    });
+  },[])
+
   const clickHandler = async () => {
     setClicked({clicked: !btnClicked.clicked, message: "Added to Cart"})
     setCartLoading(true)

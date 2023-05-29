@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "../AuthPages.css";
 import { useAddress } from "../../context/AddressProvider";
 import { useNavigate } from "react-router-dom";
@@ -18,6 +18,14 @@ export default function Address() {
     cartDispatch({type: "clearCart"})
     navigate("/order-review")
   }
+
+  useEffect(()=>{
+    window.scrollTo({
+      top: 100,
+      left: 100,
+      behavior: "smooth",
+    });
+  },[])
 
   return (
     <>
