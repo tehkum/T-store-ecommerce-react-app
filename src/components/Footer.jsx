@@ -6,7 +6,7 @@ import { useAuth } from "../context/AuthProvider";
 export default function Footer() {
   const {isLoggedIn} = useContext(useAuth);
   return (
-    <footer>
+    <div className="footer">
       
         {isLoggedIn ?<div className="footer-top-layer">
           <span>AVAIL OFFER. COUPON CODE: </span>
@@ -88,6 +88,6 @@ export default function Footer() {
         </div>
         <div className="copyright">©2023 copyright by Tehkum</div>
       </div>
-    </footer>
+    </div>
   );
 }

@@ -18,3 +18,10 @@
 .alert-show {
     display: block;
 }
+
+@media (max-width: 640px) {
+    .alert-box {
+        right: 5px;
+        top: 70px;
+    }
+}

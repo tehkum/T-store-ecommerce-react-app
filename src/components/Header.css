@@ -7,7 +7,7 @@ nav {
   align-items: center;
   top: 0;
   background-color: tan;
-  z-index: 10;
+  z-index: 25;
   box-shadow: 0 0.5px 5px #000000;
 }
 
