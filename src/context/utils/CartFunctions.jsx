@@ -100,3 +100,22 @@ export const decrementCart = async (action) => {
         console.log(error)
     }
 }
+
+export const clearCart = async () => {
+    try {
+        const { data } = await axios.get(`/api/user/cart`,{
+            headers: {
+                authorization: localStorage.getItem("encodedToken")
+            }
+        })
+        // console.log(data.cart, "data before")
+        data?.cart?.map(async ({_id})=> {
+            return await axios.delete(`/api/user/cart/${_id}`,{
+            headers: { authorization: localStorage.getItem('encodedToken')}
+        })
+    })
+        return [...data?.cart]
+    } catch (error) {
+        console.log(error)
+    }
+}

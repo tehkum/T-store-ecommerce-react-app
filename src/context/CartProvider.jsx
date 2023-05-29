@@ -1,5 +1,5 @@
 import { createContext, useEffect, useReducer } from "react";
-import { addToCart, removeFromCart, incrementCart, decrementCart, fetchCart } from "./utils/CartFunctions";
+import { addToCart, removeFromCart, incrementCart, decrementCart, fetchCart, clearCart } from "./utils/CartFunctions";
 
 export const useCart = createContext();
 
@@ -11,6 +11,7 @@ export function CartProvider({ children }) {
   
       case "add-to-cart":
       addToCart(action).then((fullCart) => {
+        console.log(fullCart,"peofj")
          cartDispatch({ type: "setCart", cart: fullCart });
         });
        break;
@@ -38,6 +39,11 @@ export function CartProvider({ children }) {
 
       case "unload" : return {...cartState, cartLoading: false}
 
+      case "checkOut" : return {...cartState, checkOutCart: [...cartState?.mainCart]}
+
+      case "clearCart" : clearCart();
+      return {...cartState, mainCart: []}
+
       default:
         return { ...cartState };
     }
@@ -46,6 +52,7 @@ export function CartProvider({ children }) {
   const [cartState, cartDispatch] = useReducer(CartReducer, {
     cartData: [],
     mainCart: [],
+    checkOutCart: [],
     cartLoading: false,
   });
 
