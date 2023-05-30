@@ -8,6 +8,9 @@ export default function FilterBox({ productData, productCat }) {
   return (
     <>
       <div className={filterState.showFilter ? "filter-side-box" : "dis-hidden"}>
+        <div className="button-cross">
+        <img width="30" height="30" src="https://img.icons8.com/ios-filled/100/multiply.png" alt="multiply" onClick={() => filterDispatch({ type: "filterFalse" })}/>
+        </div>
         <div>
           <h3>Price Filter</h3>
           <label htmlFor="price1-filter">
@@ -121,17 +124,7 @@ export default function FilterBox({ productData, productCat }) {
         {filterState.clearFilter && (
           <button
             className={
-              !filterState.showFilter ? "dis-hidden" : "btn-hideFilter"
-            }
-            onClick={() => filterDispatch({ type: "filterFalse" })}
-          >
-            hide Filters
-          </button>
-        )}
-        {!filterState.clearFilter && (
-          <button
-            className={
-              !filterState.showFilter ? "dis-hidden" : "btn-hideFilter"
+              !filterState.clearFilter ? "dis-hidden" : "btn-hideFilter"
             }
             onClick={() => filterDispatch({ type: "clear-filter" })}
           >

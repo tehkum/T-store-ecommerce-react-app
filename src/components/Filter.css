@@ -21,6 +21,10 @@
     display: none;
 }
 
+.button-cross img:hover {
+    background-color: #c1c0c0;
+}
+
 .filter-side-box {
     display: flex;
     flex-direction: column;
