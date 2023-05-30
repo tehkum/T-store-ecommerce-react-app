@@ -12,6 +12,7 @@ import Address from "../pages/protected/Address";
 import { useContext } from "react";
 import { useAuth } from "../context/AuthProvider";
 import OrderReview from "../pages/protected/OrderReview";
+import NotFound from "../pages/NotFound";
 
 export default function RouterRoutes() {
   const { isLoggedIn } = useContext(useAuth);
@@ -22,6 +23,9 @@ export default function RouterRoutes() {
       <Route path="/products/:productCat" element={<Products />} />
       <Route path="/product/:productId" element={<Product />} />
       <Route path="/mockman" element={<Mockman />} />
+      <Route path="/*" element={<NotFound />} />
+      <Route path="/product/*" element={<NotFound />} />
+      <Route path="/products/*" element={<NotFound />} />
       <Route
         path="/cart"
         element={

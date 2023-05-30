@@ -46,11 +46,10 @@ export function AuthContext({ children }) {
       }
     } catch (error) {
       console.log(error);
-      if( error.request.status === 401 )
-      {
-        setLoginError("WRONG PASSWORD")
+      if (error.request.status === 401) {
+        setLoginError("WRONG PASSWORD");
       } else {
-        setLoginError("USER NOT FOUND")
+        setLoginError("USER NOT FOUND");
       }
     }
   };
@@ -62,13 +61,12 @@ export function AuthContext({ children }) {
 
   const signupHandler = async () => {
     try {
-      const res = await fetch("/api/auth/signup", {
-        method: "POST",
-        data: JSON.stringify(signupDetails),
-      });
-      const { encodedToken } = await res.json();
-      localStorage.setItem("encodedToken", encodedToken);
-      navigate("/");
+      const res = await axios.post("/api/auth/signup", signupDetails);
+      console.log(res);
+      if (res?.status === 201) {
+        localStorage.setItem("encodedToken", res?.data?.encodedToken);
+        navigate("/login");
+      }
     } catch (error) {
       console.log(error);
     }
@@ -85,7 +83,7 @@ export function AuthContext({ children }) {
         signupHandler,
         setSignup,
         mainLoginHandler,
-        loginError
+        loginError,
       }}
     >
       {children}

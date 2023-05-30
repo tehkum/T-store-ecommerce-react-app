@@ -1,12 +1,9 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
-// import front1 from "../images/frontpage-box2.jpg"
 import "./Product.css";
 import { useCart, useWishlist } from "..";
 import AlertBox from "../components/AlertBox";
 import ProductPageLoad from "../components/ProductPageLoad";
-// import h1 from "../images/h1.png";
-// import h2 from "../images/h2.png";
 
 export function Product() {
   const { productId } = useParams();
@@ -65,7 +62,6 @@ export function Product() {
   const { title, type, image, image2, image3, image4, price, description, stock } = specificProduct;
 
   return productLoad ? <ProductPageLoad /> :<>
-    {/* <ProductPageLoad /> */}
     <div className="container-product">
       <div className="card-right">
         <img src={image} alt="..."/>
