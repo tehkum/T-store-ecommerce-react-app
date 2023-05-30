@@ -1,8 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import "../AuthPages.css";
-import { useAddress } from "../../context/AddressProvider";
+import { useAddress, useCart } from "../../index";
 import { useNavigate } from "react-router-dom";
-import { useCart } from "../../context/CartProvider";
 
 export default function Address() {
   const { addressState, addressDispatch } = useContext(useAddress);

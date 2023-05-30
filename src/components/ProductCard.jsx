@@ -3,9 +3,8 @@ import { Link } from "react-router-dom";
 import light from "../images/h2.png";
 import dark from "../images/h1.png";
 import { useContext, useState } from "react";
-import { useWishlist } from "../context/WishlistProvider";
+import { useWishlist, useCart } from "..";
 import AlertBox from "./AlertBox";
-import { useCart } from "../context/CartProvider";
 
 export default function ProductCard({ id, image, title, price, category, description }) {
   const [showButton, setButton] = useState(false);
@@ -60,7 +59,7 @@ export default function ProductCard({ id, image, title, price, category, descrip
     <img
       src={light}
       alt="..."
-      className="wish-logo"
+      className="wish-logo logo-light"
       width="20px"
       height="20px"
       onClick={clickAddHandler}

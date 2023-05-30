@@ -2,8 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 // import front1 from "../images/frontpage-box2.jpg"
 import "./Product.css";
-import { useCart } from "../context/CartProvider";
-import { useWishlist } from "../context/WishlistProvider";
+import { useCart, useWishlist } from "..";
 import AlertBox from "../components/AlertBox";
 import ProductPageLoad from "../components/ProductPageLoad";
 // import h1 from "../images/h1.png";

@@ -1,9 +1,8 @@
 import { useContext, useState } from "react";
 import "./CartCard.css";
-import { useCart } from "../context/CartProvider";
+import { useCart, useWishlist } from "..";
 import light from "../images/h2.png";
 import dark from "../images/h1.png";
-import { useWishlist } from "../context/WishlistProvider";
 import AlertBox from "./AlertBox";
 
 export default function CartCard({

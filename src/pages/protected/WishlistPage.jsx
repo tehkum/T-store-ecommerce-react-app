@@ -18,7 +18,7 @@ export function Wishlist() {
 
   return (
     <>
-      <div className="top-products-desc">
+      <div className="top-wishlist-desc">
         <h1>
           <i>WISHLIST</i>
         </h1>

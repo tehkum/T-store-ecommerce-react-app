@@ -1,5 +1,4 @@
 import { Routes, Route } from "react-router-dom";
-// import { Navigate } from "react-router";
 import RequireAuth from "../components/RequireAuth";
 import { CartPage } from "../pages/protected/CartPage";
 import { HomePage } from "../pages/HomePage";

@@ -24,12 +24,11 @@
 .filter-side-box {
     display: flex;
     flex-direction: column;
-    z-index: 15;
+    z-index: 1;
     position: fixed;
     right: 20px;
-    top: 70px;
+    top: 150px;
     padding: 2rem;
-    height: 100vw;
     background-color: white;
 }
 
@@ -47,7 +46,9 @@
     }
 
     .filter-side-box {
-        right: 0
+        right: 0;
+        top: 70px;
+
     }
     
     .radio-filter{

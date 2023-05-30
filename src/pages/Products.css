@@ -6,6 +6,15 @@
     justify-content: space-between;
 }
 
+.top-wishlist-desc{
+    width: 80%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 .top-products-desc h1{
     font-size: 35px;
 }
@@ -35,6 +44,7 @@
 
 .btn-showFilter:hover{
     background-color: black;
+    color: white;
 }
 
 .dis-hidden {

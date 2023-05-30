@@ -53,6 +53,10 @@
 
 }
 
+.logo-light:hover {
+  background-color: #c1c0c0;
+}
+
 .add-to-cart-btn {
   position: absolute;
   top: 10px;

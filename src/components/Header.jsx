@@ -4,8 +4,7 @@ import SearchBar from "./SearchBar";
 import logo from "../images/logo.png";
 import HamburgerMenu from "./HamburgerMenu";
 import { useContext, useState } from "react";
-import { useCart } from "../context/CartProvider";
-import { useWishlist } from "../context/WishlistProvider";
+import { useCart, useWishlist } from "..";
 
 export default function Header() {
   const [showHamburger, setHamburger] = useState(false);

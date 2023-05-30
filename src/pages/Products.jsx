@@ -1,10 +1,9 @@
 import { useParams } from "react-router-dom";
 import { useContext, useEffect } from "react";
 
-import { useProducts } from "../context/ProductProvider";
+import { useProducts, useFilter } from "..";
 import ProductCard from "../components/ProductCard";
 import "./Products.css";
-import { useFilter } from "../context/filterProvider";
 import FilterBox from "../components/FilterBox";
 import LoadingCard from "../components/LoadingCard";
 
@@ -48,7 +47,7 @@ export function Products() {
       left: 100,
       behavior: "smooth",
     });
-  },[])
+  },[productCat])
 
   return (
     <>
