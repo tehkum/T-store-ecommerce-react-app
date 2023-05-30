@@ -39,7 +39,6 @@ export function AuthContext({ children }) {
   const mainLoginHandler = async () => {
     try {
       const res = await axios.post("/api/auth/login", loginDetails);
-      console.log(res)
       if (res.status === 200) {
         localStorage.setItem("encodedToken", res.data.encodedToken);
         setLoggenIn(true);
@@ -58,7 +57,6 @@ export function AuthContext({ children }) {
 
   const setSignup = (type, data) => {
     signupDetails[type] = data;
-    console.log(signupDetails, data);
     setSignupDetails({ ...signupDetails });
   };
 

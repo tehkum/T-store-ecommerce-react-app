@@ -16,7 +16,7 @@ export function ProductProvider({ children }) {
         setLoading(false);
       },2000)
     } catch (error) {
-      console.log(error, "kendsnaodn");
+      console.log(error);
     }
   };
 

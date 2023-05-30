@@ -11,7 +11,6 @@ export function CartProvider({ children }) {
   
       case "add-to-cart":
       addToCart(action).then((fullCart) => {
-        console.log(fullCart,"peofj")
          cartDispatch({ type: "setCart", cart: fullCart });
         });
        break;
@@ -25,9 +24,10 @@ export function CartProvider({ children }) {
       })
       break;
 
-      case "incrementCart" : incrementCart(action).then((fullCart)=>{
-        cartDispatch({ type: "setCart", cart: fullCart});
-      })
+      case "incrementCart" : incrementCart(action)
+      // .then((fullCart)=>{
+      //   cartDispatch({ type: "setCart", cart: fullCart});
+      // })
       break;
 
       case "decrementCart" : decrementCart(action).then((fullCart)=>{

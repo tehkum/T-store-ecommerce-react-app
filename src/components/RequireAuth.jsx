@@ -5,7 +5,6 @@ import { useAuth } from "..";
 export default function RequireAuth({ children }) {
   const { isLoggedIn } = useContext(useAuth);
   const location = useLocation();
-  // console.log(location);
   return (isLoggedIn || (localStorage.getItem("encodedToken"))) ? (
     children
   ) : (

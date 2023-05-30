@@ -9,10 +9,8 @@ export const CartReducer = (cartState, action) => {
                 //     method: "POST",
                 //     body: JSON.stringify(action.data)
                 // });
-                // console.log(res.json(), "cartres")
-                // console.log(cartState?.cartData)
+                // 
 
-                console.log(1)
 
             } catch (error) {
                 console.log(error)

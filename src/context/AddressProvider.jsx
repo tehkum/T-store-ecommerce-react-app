@@ -26,7 +26,6 @@ export function AddressProvider({ children }) {
 
             case "addAddressClick" : 
             localStorage.setItem("address", JSON.stringify([...addressState.addressData , {...addressState.currAddress}]))
-            console.log(JSON.parse(localStorage.getItem("address") ?? []))
             return { ...addressState, addressData: JSON.parse(localStorage.getItem("address") ?? [])}
 
             default: return {...addressState}

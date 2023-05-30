@@ -7,7 +7,6 @@ export const AddToWishlist = async (action) => {
                 authorization: localStorage.getItem("encodedToken")
             }
         })
-        console.log(data.wishlist.find(wishlist => wishlist._id === action.data._id),"wish")
         if(data.wishlist.find(wishlist => wishlist._id === action.data._id)) {
             return ([...data.wishlist])
         }
