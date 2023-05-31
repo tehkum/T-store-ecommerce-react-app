@@ -19,6 +19,10 @@ nav {
   font-size: small;
 }
 
+.logout-btn-img:hover{
+  cursor: pointer;
+}
+
 .link2, .link3{
   position: relative;
 }

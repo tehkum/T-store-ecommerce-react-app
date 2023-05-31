@@ -4,12 +4,18 @@ import SearchBar from "./SearchBar";
 import logo from "../images/logo.png";
 import HamburgerMenu from "./HamburgerMenu";
 import { useContext, useState } from "react";
-import { useCart, useWishlist } from "..";
+import { useCart, useWishlist, useAuth } from "..";
 
 export default function Header() {
   const [showHamburger, setHamburger] = useState(false);
   const { cartState } = useContext(useCart);
   const { wishlistState } = useContext(useWishlist);
+  const {isLoggedIn, setLoggenIn} = useContext(useAuth)
+
+  const logoutHandler = () => {
+    localStorage.removeItem("encodedItem")
+    setLoggenIn(false);
+  }
 
   return (
     <>
@@ -40,14 +46,14 @@ export default function Header() {
               <SearchBar />
             </div>
           </span>
-          <NavLink className="navigation-links link2" to="/Login">
+          { isLoggedIn ? <img width="30" height="30" className="logout-btn-img" src="https://img.icons8.com/ios-glyphs/90/exit.png" alt="exit" onClick={logoutHandler}/> : <NavLink className="navigation-links link2" to="/Login">
             <img
               width="30"
               height="30"
               src="https://img.icons8.com/ios-filled/100/user-male-circle.png"
               alt="user-male-circle"
             />
-          </NavLink>
+          </NavLink>}
           <NavLink className="navigation-links link2" to="/wishlist">
             <img
               width="30"
