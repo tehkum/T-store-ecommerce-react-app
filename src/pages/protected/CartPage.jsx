@@ -12,7 +12,7 @@ export function CartPage() {
   
 
   const totalPrice = Math.floor(
-    cartState?.mainCart?.reduce(
+    (cartState?.mainCart ?? []).reduce(
       (total, { price, qty }) => qty * (total + price),
       0
     )
@@ -43,7 +43,7 @@ export function CartPage() {
         <div className="left-cart-area">
           <h1>Your Cart</h1>
           <p>
-            TOTAL [{cartState?.mainCart?.length}] <b>₹{totalPrice}</b>
+            TOTAL [{(cartState?.mainCart?.length ?? 0)}] <b>₹{totalPrice}</b>
           </p>
           {cartState?.cartLoading ? (
             <>
@@ -76,7 +76,7 @@ export function CartPage() {
           </button>
           <h2>Order summary</h2>
           <div className="sec1-cart-right">
-            <p>{cartState?.mainCart?.length} item</p>
+            <p>{cartState?.mainCart?.length ?? 0} item</p>
             <p>₹{totalPrice}</p>
           </div>
           <div className="sec2-cart-right">

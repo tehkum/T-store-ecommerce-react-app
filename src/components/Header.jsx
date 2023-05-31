@@ -55,7 +55,7 @@ export default function Header() {
               src="https://img.icons8.com/material-outlined/96/like--v1.png"
               alt="like--v1"
             />
-            <p>{wishlistState?.mainWish?.length ?? ""}</p>
+            <p>{wishlistState?.mainWish?.length ?? 0}</p>
           </NavLink>
           <NavLink className="navigation-links link3" to="/cart">
             <img
@@ -64,7 +64,7 @@ export default function Header() {
               src="https://img.icons8.com/material-outlined/96/shopping-bag--v1.png"
               alt="shopping-bag--v1"
             />
-            <p>{cartState?.mainCart?.length ?? ""}</p>
+            <p>{cartState?.mainCart?.length ?? 0}</p>
           </NavLink>
         </div>
         <div className="search-sm-hidden">
