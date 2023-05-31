@@ -27,7 +27,11 @@ export default function LoginPage() {
       setEmpty({...isEmpty, loginPass: true, emptyMessage: "Password field empty"})
     }}
     else{
-      mainLoginHandler();
+    if(loginDetails.email.split("").includes("@")){
+      mainLoginHandler();}
+      else{
+        setEmpty({...isEmpty, emptyMessage: "Email invalid"})
+      }
     }
   }
 
@@ -38,6 +42,7 @@ export default function LoginPage() {
       behavior: "smooth",
     });
   },[])
+  
 
 
   return (
@@ -71,7 +76,7 @@ export default function LoginPage() {
           <label htmlFor="login-pass">
             <input
               style={isEmpty.loginPass ? {border: "2px solid red"} : {border: "1px solid #666666"}}
-              type="passsword"
+              type="password"
               id="login-pass"
               placeholder="Password*"
               className="field-inp"

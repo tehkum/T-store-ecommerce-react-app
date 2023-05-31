@@ -130,7 +130,7 @@ export default function Address() {
             ADD
           </button>
           <p>
-            By clicking "LOG IN", I agree to the Terms & Conditions, the adiClub
+            By clicking "Add Address", I agree to the Terms & Conditions, the adiClub
             Terms & Conditions and the adidas Privacy Policy.
           </p>
         </div>

@@ -76,6 +76,7 @@ export function AuthContext({ children }) {
     <useAuth.Provider
       value={{
         isLoggedIn,
+        signupDetails,
         setLoggenIn,
         loginHandler,
         setLoginDetails,

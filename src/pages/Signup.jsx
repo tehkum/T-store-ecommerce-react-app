@@ -1,11 +1,17 @@
 import { Link } from "react-router-dom";
 import "./AuthPages.css";
 import { useAuth } from "../context/AuthProvider";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
+import AlertBox from "../components/AlertBox";
 
 
 export default function SignupPage() {
-  const { signupHandler, setSignup } = useContext(useAuth);
+  const { signupHandler, setSignup, signupDetails } = useContext(useAuth);
+  const [ confirmPassword, setConfirmPassword ] = useState("");
+  const [ btnClicked, setClicked ] = useState({
+    clicked: true,
+    message: ""
+  }) 
 
   useEffect(()=>{
     window.scrollTo({
@@ -14,6 +20,18 @@ export default function SignupPage() {
       behavior: "smooth",
     });
   },[])
+
+  const  clickChecker = () => {
+    if(signupDetails.password ?? "" !== confirmPassword ?? ""){
+      setClicked({clicked: !btnClicked.clicked, message: "Email invalid"})
+    } else if(!signupDetails.email.split("").includes("@")){
+      setClicked({clicked: !btnClicked.clicked, message: "Password didnt matched"})
+    }
+    else {
+      signupHandler();
+    }
+  }
+
 
 
   return (
@@ -64,6 +82,7 @@ export default function SignupPage() {
               type="passsword"
               id="login-pass-cnf"
               placeholder="Confirm Password*"
+              onChange={e=>setConfirmPassword(e.target.value)}
               className="field-inp"
             />
           </label>
@@ -71,7 +90,7 @@ export default function SignupPage() {
             <input type="checkbox" id="keep-log-in" />
             Keep me Signed in
           </label>
-          <button className="button-login btn-secondary" onClick={signupHandler}>Signup</button>
+          <button className="button-login btn-secondary" onClick={clickChecker}>Signup</button>
           <button className="button-login btn-primary">
             Login with test credentials
           </button>
@@ -107,6 +126,7 @@ export default function SignupPage() {
           <button className="button-login btn-primary" >SHOP NOW</button>
         </div>
       </div>
+      <AlertBox clicked={btnClicked.clicked} alertMessage={btnClicked.message}/>
     </>
   );
 }

@@ -8,13 +8,13 @@ export function ProductProvider({ children }) {
 
   const fetchDetails = async () => {
     try {
-      setLoading(true)
+      setLoading(true);
+      const data = await fetch("/api/products");
+      const fullData = await data.json();
+      setProduct(fullData.products);
       setTimeout(async () => {
-        const data = await fetch("/api/products");
-        const fullData = await data.json();
-        setProduct(fullData.products);
         setLoading(false);
-      },2000)
+      }, 2000);
     } catch (error) {
       console.log(error);
     }
@@ -24,11 +24,11 @@ export function ProductProvider({ children }) {
     try {
       const data = await fetch("/api/products");
       const fullData = await data.json();
-      setLoading(false)
+      setLoading(false);
       return fullData.products;
     } catch (error) {
       console.log(error);
-    } 
+    }
   };
 
   useEffect(() => {
