@@ -22,10 +22,10 @@ export default function SignupPage() {
   },[])
 
   const  clickChecker = () => {
-    if(signupDetails.password ?? "" !== confirmPassword ?? ""){
-      setClicked({clicked: !btnClicked.clicked, message: "Email invalid"})
+    if(signupDetails.password !== confirmPassword ){
+      setClicked({clicked: !btnClicked.clicked, message: "Password didnt matched "})
     } else if(!signupDetails.email.split("").includes("@")){
-      setClicked({clicked: !btnClicked.clicked, message: "Password didnt matched"})
+      setClicked({clicked: !btnClicked.clicked, message: "Email invalid"})
     }
     else {
       signupHandler();
