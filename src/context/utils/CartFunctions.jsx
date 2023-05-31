@@ -60,6 +60,7 @@ export const removeFromCart = async (action) => {
         const res = await axios.delete(`/api/user/cart/${action.id}`,{
             headers: { authorization: localStorage.getItem('encodedToken')}
         })
+        // console.log([...res.data.cart])
         return [...res.data.cart]
     } catch (error) {
         console.log(error)
@@ -77,7 +78,7 @@ export const incrementCart = async (action) => {
                 authorization: localStorage.getItem("encodedToken")
             }
         });
-        // return [...data.cart]
+        return [...data.cart]
     } catch (error) {
         console.log(error)
     }
@@ -107,6 +108,7 @@ export const clearCart = async () => {
                 authorization: localStorage.getItem("encodedToken")
             }
         })
+        // console.log(data.cart, "data before")
         data?.cart?.map(async ({_id})=> {
             return await axios.delete(`/api/user/cart/${_id}`,{
             headers: { authorization: localStorage.getItem('encodedToken')}

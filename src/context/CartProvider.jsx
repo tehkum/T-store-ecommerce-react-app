@@ -24,10 +24,9 @@ export function CartProvider({ children }) {
       })
       break;
 
-      case "incrementCart" : incrementCart(action)
-      // .then((fullCart)=>{
-      //   cartDispatch({ type: "setCart", cart: fullCart});
-      // })
+      case "incrementCart" : incrementCart(action).then((fullCart)=>{
+        cartDispatch({ type: "setCart", cart: fullCart});
+      })
       break;
 
       case "decrementCart" : decrementCart(action).then((fullCart)=>{
