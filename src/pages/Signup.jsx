@@ -70,7 +70,7 @@ export default function SignupPage() {
           </label>
           <label htmlFor="login-pass">
             <input
-              type="passsword"
+              type="password"
               id="login-pass"
               placeholder="Password*"
               onChange={e=>setSignup("password",e.target.value)}
@@ -79,7 +79,7 @@ export default function SignupPage() {
           </label>
           <label htmlFor="login-pass-cnf">
             <input
-              type="passsword"
+              type="password"
               id="login-pass-cnf"
               placeholder="Confirm Password*"
               onChange={e=>setConfirmPassword(e.target.value)}

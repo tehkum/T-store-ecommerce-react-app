@@ -13,7 +13,7 @@ export default function CartCard({
   image,
   qty,
 }) {
-  const { cartDispatch } = useContext(useCart);
+  const { cartDispatch, incrementCartHandler, decrementCartHandler } = useContext(useCart);
   // const [showButton, setButton] = useState(false);
   const [ btnClicked, setClicked ] = useState({
     clicked: false,
@@ -83,11 +83,11 @@ export default function CartCard({
         </div>
         <div className="cart-card-part3">
           <button
-          onClick={() => cartDispatch({ type: "incrementCart", id: id })}
+          onClick={() => incrementCartHandler({ type: "incrementCart", id: id }, cartDispatch)}
           >+</button>
           <p>{qty ?? 1}</p>
           <button
-          onClick={() => cartDispatch({ type: "decrementCart", id: id })}
+          onClick={() => decrementCartHandler({ type: "decrementCart", id: id }, cartDispatch)}
           >-</button>
         </div>
       </div>

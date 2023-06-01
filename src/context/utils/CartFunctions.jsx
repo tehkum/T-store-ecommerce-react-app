@@ -38,16 +38,16 @@ export const addToCart = async (action) => {
 
 export const fetchCart = async (cartDispatch) => {
     try {
-        cartDispatch({type: "load"})
+        // cartDispatch({type: "load"})
         const {data} = await axios.get("/api/user/cart",{
             headers: { 
               authorization : localStorage.getItem("encodedToken")
             }
           })
           cartDispatch({type: "getCart", cart: await data.cart});
-        setTimeout(async () => {
-              cartDispatch({type: "unload"})
-        },1500)      
+        // setTimeout(async () => {
+        //       cartDispatch({type: "unload"})
+        // },1500)      
     } catch (error) {
       console.log(error)
     }
@@ -67,9 +67,26 @@ export const removeFromCart = async (action) => {
     }
 }
 
+// export const incrementCart = async (action) => {
+//     try {
+//         const { data } = await axios.post(`/api/user/cart/${action.id}`,{
+//             action: {
+//                 type: "increment"
+//               }
+//         },{
+//             headers: {
+//                 authorization: localStorage.getItem("encodedToken")
+//             }
+//         });
+//         return [...data.cart]
+//     } catch (error) {
+//         console.log(error)
+//     }
+// }
+
 export const incrementCart = async (action) => {
-    try {
-        const { data } = await axios.post(`/api/user/cart/${action.id}`,{
+    
+        return await axios.post(`/api/user/cart/${action.id}`,{
             action: {
                 type: "increment"
               }
@@ -78,15 +95,30 @@ export const incrementCart = async (action) => {
                 authorization: localStorage.getItem("encodedToken")
             }
         });
-        return [...data.cart]
-    } catch (error) {
-        console.log(error)
-    }
+        // return [...data.cart]
+    
 }
 
+// export const decrementCart = async (action) => {
+//     try {
+//         const { data } = await axios.post(`/api/user/cart/${action.id}`,{
+//             action: {
+//                 type: "decrement"
+//               }
+//         },{
+//             headers: {
+//                 authorization: localStorage.getItem("encodedToken")
+//             }
+//         });
+//         return [...data.cart]
+//     } catch (error) {
+//         console.log(error)
+//     }
+// }
+
 export const decrementCart = async (action) => {
-    try {
-        const { data } = await axios.post(`/api/user/cart/${action.id}`,{
+    
+        return await axios.post(`/api/user/cart/${action.id}`,{
             action: {
                 type: "decrement"
               }
@@ -95,10 +127,6 @@ export const decrementCart = async (action) => {
                 authorization: localStorage.getItem("encodedToken")
             }
         });
-        return [...data.cart]
-    } catch (error) {
-        console.log(error)
-    }
 }
 
 export const clearCart = async () => {
