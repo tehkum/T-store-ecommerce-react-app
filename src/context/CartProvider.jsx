@@ -1,5 +1,5 @@
-import { createContext, useEffect, useReducer } from "react";
-import { addToCart, removeFromCart, incrementCart, decrementCart, fetchCart, clearCart } from "./utils/CartFunctions";
+import { createContext, useReducer } from "react";
+import { addToCart, removeFromCart, incrementCart, decrementCart, clearCart } from "./utils/CartFunctions";
 
 export const useCart = createContext();
 
@@ -21,6 +21,15 @@ const decrementCartHandler = async (action, cartDispatch) => {
   }
 }
 
+const addToCartHandler = async (action, cartDispatch) => {
+  try {
+    const res = await addToCart(action)
+    cartDispatch({type: "getCart", cart: res.data.cart})
+  }catch(error){
+    console.log(error);
+  }
+}
+
 export function CartProvider({ children }) {
   const CartReducer = (cartState, action) => {
   
@@ -30,12 +39,12 @@ export function CartProvider({ children }) {
   
       case "add-to-cart":
       addToCart(action).then((fullCart) => {
-         cartDispatch({ type: "setCart", cart: fullCart });
+         cartDispatch({ type: "getCart", cart: fullCart });
         });
        break;
 
-      case "setCart": 
-      return {...cartState, cartData: action.cart}
+      // case "setCart": 
+      // return {...cartState, cartData: action.cart}
 
       case "remove-from-cart" : 
       removeFromCart(action).then((fullCart)=>{
@@ -53,10 +62,9 @@ export function CartProvider({ children }) {
       // })
       // break;
 
-      case "incrementCart" : 
-        incrementCartHandler(action,cartDispatch)
-      
-      break;
+      // case "incrementCart" : 
+      //   incrementCartHandler(action,cartDispatch)
+      // break;
 
       case "load" : return {...cartState, cartLoading: true}
 
@@ -73,7 +81,7 @@ export function CartProvider({ children }) {
   };
 
   const [cartState, cartDispatch] = useReducer(CartReducer, {
-    cartData: [],
+    // cartData: [],
     mainCart: [],
     checkOutCart: [],
     cartLoading: false,
@@ -81,13 +89,13 @@ export function CartProvider({ children }) {
 
   
 
-  useEffect(()=>{
-    fetchCart(cartDispatch);
-  },[cartState?.cartData])
+  // useEffect(()=>{
+  //   fetchCart(cartDispatch);
+  // },[cartState?.cartData])
 
 
   return (
-    <useCart.Provider value={{ cartState, cartDispatch, incrementCartHandler, decrementCartHandler }}>
+    <useCart.Provider value={{ cartState, cartDispatch, incrementCartHandler, decrementCartHandler, addToCartHandler }}>
       {children}
     </useCart.Provider>
   );

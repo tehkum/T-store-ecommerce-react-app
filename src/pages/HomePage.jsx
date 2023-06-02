@@ -77,7 +77,7 @@ export function HomePage() {
             productData
               .filter(({ category }) => category === "shoes")
               .map((item) => {
-                const { _id, title, image, type, price } = item;
+                const { _id, title, image, type, price, description } = item;
                 return (
                   <ProductCard
                     id={_id}
@@ -85,6 +85,7 @@ export function HomePage() {
                     title={title}
                     price={price}
                     category={type}
+                    description={description}
                   />
                 );
               })
