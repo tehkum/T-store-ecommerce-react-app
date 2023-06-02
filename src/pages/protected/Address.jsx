@@ -2,10 +2,15 @@ import { useContext, useEffect, useState } from "react";
 import "../AuthPages.css";
 import { useAddress, useCart } from "../../index";
 import { useNavigate } from "react-router-dom";
+import AlertBox from "../../components/AlertBox";
 
 export default function Address() {
   const { addressState, addressDispatch } = useContext(useAddress);
   const { cartDispatch } = useContext(useCart);
+  const [fieldEmpty, setField] = useState({
+    clicked: false,
+    message: "",
+  });
   const [selectAddress, setSelect] = useState({
     clicked: false,
     id: "",
@@ -13,18 +18,42 @@ export default function Address() {
 
   const navigate = useNavigate();
 
-  const orderHandler = () =>{
-    cartDispatch({type: "clearCart"})
-    navigate("/order-review")
-  }
+  const orderHandler = () => {
+    cartDispatch({ type: "clearCart" });
+    navigate("/order-review");
+  };
 
-  useEffect(()=>{
+  const clickHandler = () => {
+    // if (
+    //   addressState?.addOne &&
+    //   addressState?.addTwo &&
+    //   addressState?.landmark &&
+    //   addressState?.postal &&
+    //   addressState?.city &&
+    //   addressState?.country
+    // ) {
+      addressDispatch({ type: "addAddressClick" })
+    // } else {
+    //   setField({clicked: !fieldEmpty.clicked, message: "Please fill the column"});
+    // }
+  };
+  
+
+  const addressHandler = (event, addressType) => {
+    addressDispatch({
+      type: "addAddressDetails",
+      data: event.target.value,
+      addressType: addressType,
+    });
+  };
+
+  useEffect(() => {
     window.scrollTo({
       top: 100,
       left: 100,
       behavior: "smooth",
     });
-  },[])
+  }, []);
 
   return (
     <>
@@ -37,14 +66,8 @@ export default function Address() {
               type="text"
               id="address-lane-1"
               placeholder="Address Lane 1*"
-              className="field-inp"
-              onChange={(event) =>
-                addressDispatch({
-                  type: "addAddressDetails",
-                  data: event.target.value,
-                  addressType: "addOne",
-                })
-              }
+              className="field-inp address-inp"
+              onChange={(event) => addressHandler(event, "addOne")}
             />
           </label>
           <label htmlFor="address-lane-2">
@@ -52,14 +75,8 @@ export default function Address() {
               type="text"
               id="address-lane-2"
               placeholder="Address Lane 2*"
-              className="field-inp"
-              onChange={(event) =>
-                addressDispatch({
-                  type: "addAddressDetails",
-                  data: event.target.value,
-                  addressType: "addTwo",
-                })
-              }
+              className="field-inp address-inp"
+              onChange={(event) => addressHandler(event, "addTwo")}
             />
           </label>
           <label htmlFor="landmark">
@@ -67,14 +84,8 @@ export default function Address() {
               type="text"
               id="landmark"
               placeholder="Landmark"
-              className="field-inp"
-              onChange={(event) =>
-                addressDispatch({
-                  type: "addAddressDetails",
-                  data: event.target.value,
-                  addressType: "landmark",
-                })
-              }
+              className="field-inp address-inp"
+              onChange={(event) => addressHandler(event, "landmark")}
             />
           </label>
           <label htmlFor="city">
@@ -82,14 +93,8 @@ export default function Address() {
               type="text"
               id="city"
               placeholder="City*"
-              className="field-inp"
-              onChange={(event) =>
-                addressDispatch({
-                  type: "addAddressDetails",
-                  data: event.target.value,
-                  addressType: "city",
-                })
-              }
+              className="field-inp address-inp"
+              onChange={(event) => addressHandler(event, "city")}
             />
           </label>
           <label htmlFor="postal-code">
@@ -97,14 +102,8 @@ export default function Address() {
               type="number"
               id="postal-code"
               placeholder="Postal Code*"
-              className="field-inp"
-              onChange={(event) =>
-                addressDispatch({
-                  type: "addAddressDetails",
-                  data: event.target.value,
-                  addressType: "postal",
-                })
-              }
+              className="field-inp address-inp"
+              onChange={(event) => addressHandler(event, "postal")}
             />
           </label>
           <label htmlFor="country">
@@ -112,26 +111,17 @@ export default function Address() {
               type="text"
               id="country"
               placeholder="Country*"
-              className="field-inp"
-              onChange={(event) =>
-                addressDispatch({
-                  type: "addAddressDetails",
-                  data: event.target.value,
-                  addressType: "country",
-                })
-              }
+              className="field-inp address-inp"
+              onChange={(event) => addressHandler(event, "country")}
             />
           </label>
           {/* <button className="button-login btn-secondary" >ADD</button> */}
-          <button
-            className="button-login btn-primary"
-            onClick={() => addressDispatch({ type: "addAddressClick" })}
-          >
+          <button className="button-login btn-primary" onClick={clickHandler}>
             ADD
           </button>
           <p>
-            By clicking "Add Address", I agree to the Terms & Conditions, the adiClub
-            Terms & Conditions and the adidas Privacy Policy.
+            By clicking "Add Address", I agree to the Terms & Conditions, the
+            adiClub Terms & Conditions and the adidas Privacy Policy.
           </p>
         </div>
         <div className="part2-login">
@@ -139,7 +129,7 @@ export default function Address() {
           <p>SELECT ONE OF THE ADDRESS FOR DELIVERY.</p>
 
           {addressState?.addressData?.map(
-            ({ addOne, addTwo, landmark, city, country }, index) => (
+            ({ addOne, addTwo, landmark, city, country, postal }, index) => (
               <div
                 style={{
                   border:
@@ -158,6 +148,9 @@ export default function Address() {
                 </p>
                 <p>
                   <b>Landmark:</b> {landmark}
+                </p>
+                <p>
+                  <b>Postal:</b> {postal}
                 </p>
                 <p>
                   <b>City:</b> {city}
@@ -191,6 +184,10 @@ export default function Address() {
           )}
         </div>
       </div>
+      <AlertBox
+        alertMessage={fieldEmpty.message}
+        clicked={fieldEmpty.clicked}
+      />
     </>
   );
 }
