@@ -22,8 +22,8 @@ export function Wishlist() {
         <h1>
           <i>WISHLIST</i>
         </h1>
-        <p>Total items: [{wishlistState?.mainWish?.lenght ?? 0}]</p>
-        {!wishlistState?.mainWish?.lenght && <h3>Wishlist is empty</h3>}
+        <p>Total items: [{wishlistState?.mainWish?.length}]</p>
+        {!wishlistState?.mainWish?.length && <h3>Wishlist is empty</h3>}
       </div>
       {/* *************************************************************************** */}
       <div className="products-container">
