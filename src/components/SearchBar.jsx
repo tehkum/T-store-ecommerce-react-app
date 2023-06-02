@@ -16,7 +16,7 @@ export default function SearchBar() {
     <>
       <label htmlFor="search-top">
         <input
-          class="search-bar"
+          className="search-bar"
           type="text"
           id="search-top"
           placeholder="Search Here"

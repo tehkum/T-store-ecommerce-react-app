@@ -18,6 +18,16 @@
   width: 600px;
 }
 
+.show-pass-login{
+  position: relative;
+}
+
+.show-icon-login{
+  position: absolute;
+  right: 70px;
+  bottom: 30px;
+}
+
 .fgt-pass {
   color: black;
 }
@@ -64,5 +74,10 @@
 @media (max-width: 500px) {
   .field-inp {
     width: 250px;
+  }
+  .show-icon-login{
+    position: absolute;
+    right: 200px;
+    /* bottom: 0px; */
   }
 }

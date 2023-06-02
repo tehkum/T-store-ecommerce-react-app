@@ -8,6 +8,7 @@ import AlertBox from "../components/AlertBox";
 export default function SignupPage() {
   const { signupHandler, setSignup, signupDetails } = useContext(useAuth);
   const [ confirmPassword, setConfirmPassword ] = useState("");
+  const [showPass, setShowPass] = useState(false);
   const [ btnClicked, setClicked ] = useState({
     clicked: true,
     message: ""
@@ -68,18 +69,41 @@ export default function SignupPage() {
               className="field-inp"
             />
           </label>
-          <label htmlFor="login-pass">
+          <label htmlFor="login-pass" className="show-pass-login">
             <input
-              type="password"
+              type={showPass ? "text" : "password"}
               id="login-pass"
               placeholder="Password*"
               onChange={e=>setSignup("password",e.target.value)}
               className="field-inp"
             />
+            {showPass ? (
+              <img
+                width="30"
+                height="30"
+                src="https://img.icons8.com/material-rounded/96/hide.png"
+                onClick={() => {
+                  setShowPass(!showPass);
+                }}
+                alt="hide"
+                className="show-icon-login"
+              />
+            ) : (
+              <img
+                width="30"
+                height="30"
+                onClick={() => {
+                  setShowPass(!showPass);
+                }}
+                src="https://img.icons8.com/material-sharp/96/visible.png"
+                alt="visible"
+                className="show-icon-login"
+              />
+            )}
           </label>
           <label htmlFor="login-pass-cnf">
             <input
-              type="password"
+              type={showPass ? "text" : "password"}
               id="login-pass-cnf"
               placeholder="Confirm Password*"
               onChange={e=>setConfirmPassword(e.target.value)}

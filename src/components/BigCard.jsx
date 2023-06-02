@@ -3,7 +3,7 @@ import "./Bigcard.css";
 
 export default function BigCard({ image, title, cat }) {
   return (
-    <div class="big-card-container">
+    <div className="big-card-container">
       <Link to={`/products/${cat}`}>
         <img src={image} alt={title} />
       </Link>

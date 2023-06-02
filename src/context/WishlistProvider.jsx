@@ -17,7 +17,7 @@ export function WishlistContext({ children }) {
             case "getWish" : return {...wishlistState, mainWish: action.wishlist}
 
             case "add-to-wishlist": AddToWishlist(action).then(fullWishlist => {
-              wishlistDispatch({type: "setWishlist", wishData: [...fullWishlist]})
+              wishlistDispatch({type: "setWishlist", wishData: fullWishlist})
             }); 
             break;
 

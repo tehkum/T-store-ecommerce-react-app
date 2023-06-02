@@ -5,45 +5,61 @@ import "./AuthPages.css";
 import AlertBox from "../components/AlertBox";
 
 export default function LoginPage() {
-  const { loginHandler, loginDetails,setLoginDetails, mainLoginHandler, loginError } = useContext(useAuth);
-  const [ isEmpty , setEmpty ] = useState({
-    loginEmail : false,
+  const {
+    loginHandler,
+    loginDetails,
+    setLoginDetails,
+    mainLoginHandler,
+    loginError,
+  } = useContext(useAuth);
+  const [isEmpty, setEmpty] = useState({
+    loginEmail: false,
     emptyMessage: "",
     loginPass: false,
   });
-  const [ buttonClicked, setClicked ] = useState(false)
+  const [showPass, setShowPass] = useState(false);
+  const [buttonClicked, setClicked] = useState(false);
 
   const clickHandler = () => {
     setClicked(!buttonClicked);
-    if(!loginDetails.email.length || !loginDetails.password.length){
-    if(!loginDetails.email.length){
-      if(!loginDetails.password.length){
-        setEmpty({loginEmail : true, loginPass: true, emptyMessage: "Email and password field empty"})
-      }else{
-        setEmpty({...isEmpty, loginEmail: true, emptyMessage: "Email field empty"})
+    if (!loginDetails.email.length || !loginDetails.password.length) {
+      if (!loginDetails.email.length) {
+        if (!loginDetails.password.length) {
+          setEmpty({
+            loginEmail: true,
+            loginPass: true,
+            emptyMessage: "Email and password field empty",
+          });
+        } else {
+          setEmpty({
+            ...isEmpty,
+            loginEmail: true,
+            emptyMessage: "Email field empty",
+          });
+        }
+      } else if (!loginDetails.password.length) {
+        setEmpty({
+          ...isEmpty,
+          loginPass: true,
+          emptyMessage: "Password field empty",
+        });
+      }
+    } else {
+      if (loginDetails.email.split("").includes("@")) {
+        mainLoginHandler();
+      } else {
+        setEmpty({ ...isEmpty, emptyMessage: "Email invalid" });
       }
     }
-    else if(!loginDetails.password.length){
-      setEmpty({...isEmpty, loginPass: true, emptyMessage: "Password field empty"})
-    }}
-    else{
-    if(loginDetails.email.split("").includes("@")){
-      mainLoginHandler();}
-      else{
-        setEmpty({...isEmpty, emptyMessage: "Email invalid"})
-      }
-    }
-  }
+  };
 
-  useEffect(()=>{
+  useEffect(() => {
     window.scrollTo({
       top: 100,
       left: 100,
       behavior: "smooth",
     });
-  },[])
-  
-
+  }, []);
 
   return (
     <>
@@ -59,42 +75,78 @@ export default function LoginPage() {
           </p>
           <label htmlFor="login-mail">
             <input
-              style={isEmpty.loginEmail ? {border: "2px solid red"} : {border: "1px solid #666666"}}
+              style={
+                isEmpty.loginEmail
+                  ? { border: "2px solid red" }
+                  : { border: "1px solid #666666" }
+              }
               type="email"
               id="login-mail"
               placeholder="Email*"
               className="field-inp"
-              onChange={event=>{
+              onChange={(event) => {
                 setEmpty({
-                  loginEmail : false,
+                  loginEmail: false,
                   emptyMessage: "",
-                })
-                setLoginDetails({...loginDetails, email: event.target.value})
+                });
+                setLoginDetails({ ...loginDetails, email: event.target.value });
               }}
             />
           </label>
-          <label htmlFor="login-pass">
+          <label htmlFor="login-pass" className="show-pass-login">
             <input
-              style={isEmpty.loginPass ? {border: "2px solid red"} : {border: "1px solid #666666"}}
-              type="password"
+              style={
+                isEmpty.loginPass
+                  ? { border: "2px solid red" }
+                  : { border: "1px solid #666666" }
+              }
+              type={showPass ? "text" : "password"}
               id="login-pass"
               placeholder="Password*"
-              className="field-inp"
-              onChange={event=>{
+              className="field-inp "
+              onChange={(event) => {
                 setEmpty({
                   emptyMessage: "",
                   loginPass: false,
-                })
-                setLoginDetails({...loginDetails, password: event.target.value})
+                });
+                setLoginDetails({
+                  ...loginDetails,
+                  password: event.target.value,
+                });
               }}
             />
+            {showPass ? (
+              <img
+                width="30"
+                height="30"
+                src="https://img.icons8.com/material-rounded/96/hide.png"
+                onClick={() => {
+                  setShowPass(!showPass);
+                }}
+                alt="hide"
+                className="show-icon-login"
+              />
+            ) : (
+              <img
+                width="30"
+                height="30"
+                onClick={() => {
+                  setShowPass(!showPass);
+                }}
+                src="https://img.icons8.com/material-sharp/96/visible.png"
+                alt="visible"
+                className="show-icon-login"
+              />
+            )}
           </label>
           <label htmlFor="keep-log-in">
             <input type="checkbox" id="keep-log-in" />
             Keep me logged in
           </label>
           {/* <p style={{color: "red"}}>{isEmpty?.emptyMessage?.length ? isEmpty?.emptyMessage : ""}</p> */}
-          <button className="button-login btn-secondary" onClick={clickHandler}>Login</button>
+          <button className="button-login btn-secondary" onClick={clickHandler}>
+            Login
+          </button>
           <button className="button-login btn-primary" onClick={loginHandler}>
             Login with test credentials
           </button>
@@ -112,7 +164,7 @@ export default function LoginPage() {
             "A 15% off voucher for your next purchase",
             "Access to Members Only products and sales",
             "Access to adidas Running and Training apps",
-            "Special offers and promotions"
+            "Special offers and promotions",
           ].map((sentence) => (
             <li>
               <img
@@ -131,8 +183,8 @@ export default function LoginPage() {
           <button className="button-login btn-primary">SHOP NOW</button>
         </div>
       </div>
-      <AlertBox alertMessage={isEmpty?.emptyMessage} clicked={buttonClicked}/>
-      <AlertBox alertMessage={loginError} clicked={buttonClicked}/>
+      <AlertBox alertMessage={isEmpty?.emptyMessage} clicked={buttonClicked} />
+      <AlertBox alertMessage={loginError} clicked={buttonClicked} />
     </>
   );
 }
