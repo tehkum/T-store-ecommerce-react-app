@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./CartCard.css";
 import { useCart, useWishlist } from "..";
 import light from "../images/h2.png";
@@ -20,6 +20,8 @@ export default function CartCard({
     message: ""
   })
 
+  const [ quantityCheck, setCheck ] = useState(false);
+
   const { wishlistDispatch, wishlistState } = useContext(useWishlist);
 
   const data = {
@@ -28,6 +30,14 @@ export default function CartCard({
     title: title,
     price: price
   };
+
+  useEffect(()=>{
+    if(qty > 1){
+      setCheck(false);
+    }else {
+      setCheck(true);
+    }
+  },[qty])
 
   const clickAddHandler = async () => {
     setClicked({clicked: !btnClicked?.clicked, message: "Added to wishlist"})
@@ -87,6 +97,7 @@ export default function CartCard({
           >+</button>
           <p>{qty ?? 1}</p>
           <button
+          disabled={quantityCheck}
           onClick={() => decrementCartHandler({ type: "decrementCart", id: id }, cartDispatch)}
           >-</button>
         </div>

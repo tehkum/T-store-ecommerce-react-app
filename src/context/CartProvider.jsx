@@ -48,7 +48,7 @@ export function CartProvider({ children }) {
 
       case "remove-from-cart" : 
       removeFromCart(action).then((fullCart)=>{
-        cartDispatch({ type: "setCart", cart: fullCart});
+        cartDispatch({ type: "getCart", cart: fullCart});
       })
       break;
 
