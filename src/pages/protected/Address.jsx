@@ -3,6 +3,7 @@ import "../AuthPages.css";
 import { useAddress, useCart } from "../../index";
 import { useNavigate } from "react-router-dom";
 import AlertBox from "../../components/AlertBox";
+import "./Address.css";
 
 export default function Address() {
   const { addressState, addressDispatch } = useContext(useAddress);
@@ -15,6 +16,12 @@ export default function Address() {
     clicked: false,
     id: "",
   });
+  const [showEdit, setEdit] = useState({
+    clicked: false,
+    index: -1,
+    typeIndex: -1,
+    editValue: "",
+  });
 
   const navigate = useNavigate();
 
@@ -25,19 +32,18 @@ export default function Address() {
 
   const clickHandler = () => {
     // if (
-    //   addressState?.addOne &&
-    //   addressState?.addTwo &&
-    //   addressState?.landmark &&
-    //   addressState?.postal &&
-    //   addressState?.city &&
-    //   addressState?.country
+    //   !addressState?.addOne ||
+    //   !addressState?.addTwo ||
+    //   !addressState?.landmark ||
+    //   !addressState?.postal ||
+    //   !addressState?.city ||
+    //   !addressState?.country
     // ) {
-      addressDispatch({ type: "addAddressClick" })
-    // } else {
     //   setField({clicked: !fieldEmpty.clicked, message: "Please fill the column"});
+    // } else {
+    addressDispatch({ type: "addAddressClick" });
     // }
   };
-  
 
   const addressHandler = (event, addressType) => {
     addressDispatch({
@@ -45,6 +51,11 @@ export default function Address() {
       data: event.target.value,
       addressType: addressType,
     });
+  };
+
+  const editHandler = (index, type) => {
+    addressDispatch({ type: "editAddress", index: index, addType: type, editValue: showEdit.editValue });
+    setEdit({...showEdit, clicked: false})
   };
 
   useEffect(() => {
@@ -131,6 +142,7 @@ export default function Address() {
           {addressState?.addressData?.map(
             ({ addOne, addTwo, landmark, city, country, postal }, index) => (
               <div
+                className="address-detail-box"
                 style={{
                   border:
                     selectAddress.id === index
@@ -140,24 +152,53 @@ export default function Address() {
                   margin: "1rem 0",
                 }}
               >
-                <p>
-                  <b>Address-Lane-1:</b> {addOne}
-                </p>
-                <p>
-                  <b>Address-Lane-2:</b> {addTwo}
-                </p>
-                <p>
-                  <b>Landmark:</b> {landmark}
-                </p>
-                <p>
-                  <b>Postal:</b> {postal}
-                </p>
-                <p>
-                  <b>City:</b> {city}
-                </p>
-                <p>
-                  <b>Coutry:</b> {country}
-                </p>
+                {[
+                  { name: "Address-Lane-1", value: addOne, valueName: "addOne" },
+                  { name: "Address-Lane-2", value: addTwo, valueName: "addTwo" },
+                  { name: "Landmark", value: landmark, valueName: "landmark" },
+                  { name: "Postal", value: postal, valueName: "postal" },
+                  { name: "City", value: city, valueName: "city" },
+                  { name: "Country", value: country, valueName: "country" },
+                ]?.map(({ name, value, valueName }, typeIndex) => (
+                  <p className="addressDetails">
+                    <b>{name}:</b>{" "}
+                    {showEdit.index === index &&
+                    showEdit.clicked &&
+                    showEdit.typeIndex === typeIndex ? (
+                      <><input
+                        type="text"
+                        defaultValue={value}
+                        onChange={(e) =>
+                          setEdit({ ...showEdit, editValue: e.target.value })
+                        }
+                        className="inp-edit"
+                      ></input>
+                      <button
+                      onClick={() => {
+                        editHandler(index, valueName)
+                      }}
+                    >
+                      Change
+                    </button>
+                      </>
+                    ) : (
+                      <>
+                        <span>{value}</span>{" "}
+                        <button
+                          onClick={() => {
+                            setEdit({
+                              clicked: true,
+                              index: index,
+                              typeIndex: typeIndex,
+                            });
+                          }}
+                        >
+                          edit
+                        </button>
+                      </>
+                    )}{" "}
+                  </p>
+                ))}
                 <button
                   className="button-login btn-secondary"
                   onClick={() => setSelect({ clicked: true, id: index })}

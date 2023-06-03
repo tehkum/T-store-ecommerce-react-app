@@ -28,6 +28,13 @@ export function AddressProvider({ children }) {
             localStorage.setItem("address", JSON.stringify([...addressState.addressData , {...addressState.currAddress}]))
             return { ...addressState, addressData: JSON.parse(localStorage.getItem("address") ?? [])}
 
+            case "editAddress" : 
+            const type = action.addType;
+            console.log(type)
+            console.log(addressState.addressData[action.index][type])
+            addressState.addressData[action.index][type] = action.editValue;
+            return {...addressState}
+
             default: return {...addressState}
         }
     }
