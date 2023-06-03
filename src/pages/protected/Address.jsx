@@ -31,19 +31,20 @@ export default function Address() {
   };
 
   const clickHandler = () => {
-    // if (
-    //   !addressState?.addOne ||
-    //   !addressState?.addTwo ||
-    //   !addressState?.landmark ||
-    //   !addressState?.postal ||
-    //   !addressState?.city ||
-    //   !addressState?.country
-    // ) {
-    //   setField({clicked: !fieldEmpty.clicked, message: "Please fill the column"});
-    // } else {
+    if (
+      !addressState?.currAddress?.addOne ||
+      !addressState?.currAddress?.addTwo ||
+      !addressState?.currAddress?.landmark ||
+      !addressState?.currAddress?.postal ||
+      !addressState?.currAddress?.city ||
+      !addressState?.currAddress?.country
+    ) {
+      setField({clicked: !fieldEmpty.clicked, message: "Please fill the column"});
+    } else {
     addressDispatch({ type: "addAddressClick" });
-    // }
+    }
   };
+
 
   const addressHandler = (event, addressType) => {
     addressDispatch({
