@@ -4,6 +4,8 @@ import "./Product.css";
 import { useCart, useWishlist } from "..";
 import AlertBox from "../components/AlertBox";
 import ProductPageLoad from "../components/ProductPageLoad";
+import h1 from "../images/h1.png"
+import h2 from "../images/h2.png"
 
 export function Product() {
   const { productId } = useParams();
@@ -89,7 +91,7 @@ export function Product() {
           <p>8</p>
         </div>
         <button className="cart-btn" disabled={cartLoading} onClick={clickHandler}>Add to cart</button>
-        <button className="wishlist-btn" disabled={wishlistLoading} onClick={wishlistClickHandler}>ht</button> 
+        <button className="wishlist-btn" disabled={wishlistLoading} onClick={wishlistClickHandler}>Add to wishlist</button> 
         <AlertBox alertMessage={btnClicked.message} clicked={btnClicked.clicked}/>       
       </div>
     </div>
