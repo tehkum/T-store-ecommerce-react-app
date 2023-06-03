@@ -79,6 +79,10 @@ export function CartPage() {
             <p>{cartState?.mainCart?.length ?? 0} item</p>
             <p>₹{totalPrice}</p>
           </div>
+          
+            {cartState?.mainCart?.map(({title, price, qty})=><div className="sec1-cart-right"><p>{title} x{qty}</p>
+            <p>₹{price}</p></div>)}
+          
           <div className="sec2-cart-right">
             <p>Delivery</p>
             <p>FREE</p>

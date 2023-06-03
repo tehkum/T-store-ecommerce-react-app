@@ -4,8 +4,6 @@ import "./Product.css";
 import { useCart, useWishlist } from "..";
 import AlertBox from "../components/AlertBox";
 import ProductPageLoad from "../components/ProductPageLoad";
-import h1 from "../images/h1.png"
-import h2 from "../images/h2.png"
 
 export function Product() {
   const { productId } = useParams();
