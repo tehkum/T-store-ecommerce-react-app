@@ -123,16 +123,36 @@ export default function FilterBox({ productData, productCat }) {
         </div>
         <div>
           <label>
-            <input type="checkbox" checked={filterState.category.find(item=>item === "shoes")} onClick={()=>filterDispatch({type: "FILTER_BY_CATEGORY", payload: "shoes"})}/>
+            <input type="checkbox" checked={filterState.category.find(item=>item === "shoes")} onClick={()=>{
+              if(filterState.category.find(item=>item === "shoes")){
+              filterDispatch({type: "FILTER_BY_CATEGORY", payload: "shoes"})}else {
+                filterDispatch({type: "REMOVE_CATEGORY", payload: "shoes"})
+              }
+              }}/>
           shoes
           </label>
-          <label><input type="checkbox" checked={filterState.category.find(item=>item === "football")} onClick={()=>filterDispatch({type: "FILTER_BY_CATEGORY", payload: "football"})}/>
+          <label><input type="checkbox" checked={filterState.category.find(item=>item === "football")} onClick={()=>{
+              if(filterState.category.find(item=>item === "football")){
+              filterDispatch({type: "FILTER_BY_CATEGORY", payload: "football"})}else {
+                filterDispatch({type: "REMOVE_CATEGORY", payload: "football"})
+              }
+              }}/>
           football
           </label>
-          <label><input type="checkbox" checked={filterState.category.find(item=>item === "tshirt")} onClick={()=>filterDispatch({type: "FILTER_BY_CATEGORY", payload: "tshirt"})}/>
+          <label><input type="checkbox" checked={filterState.category.find(item=>item === "tshirt")} onClick={()=>{
+              if(filterState.category.find(item=>item === "tshirt")){
+              filterDispatch({type: "FILTER_BY_CATEGORY", payload: "tshirt"})}else {
+                filterDispatch({type: "REMOVE_CATEGORY", payload: "tshirt"})
+              }
+              }}/>
           tshirts
           </label>
-          <label><input type="checkbox" checked={filterState.category.find(item=>item === "lower")} onClick={()=>filterDispatch({type: "FILTER_BY_CATEGORY", payload: "lower"})}/>
+          <label><input type="checkbox" checked={filterState.category.find(item=>item === "lower")} onClick={()=>{
+              if(filterState.category.find(item=>item === "lower")){
+              filterDispatch({type: "FILTER_BY_CATEGORY", payload: "lower"})}else {
+                filterDispatch({type: "REMOVE_CATEGORY", payload: "lower"})
+              }
+              }}/>
           lower
           </label>
         </div>
