@@ -13,7 +13,9 @@ export function FilterContext({ children }) {
         searchFilterValue: "",
         showFilter: false,
         rangeValue: "5000",
-        clearFilter: true
+        clearFilter: true,
+        categoryFilter: false,
+        category: [],
     }
 
     const [ filterState, filterDispatch ] = useReducer(filterReducer, initialFilterValue) 

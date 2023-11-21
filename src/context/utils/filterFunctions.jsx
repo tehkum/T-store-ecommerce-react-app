@@ -22,6 +22,9 @@ export const filterReducer = (filterState, action) => {
         clearFilter: false
     }
 
+    case "FILTER_BY_CATEGORY": return {...filterState, categoryFilter: true,
+      category: [...filterState.category, action.payload],}
+
       default: return {...filterState}
     }
 }
