@@ -23,7 +23,9 @@ export const filterReducer = (filterState, action) => {
     }
 
     case "FILTER_BY_CATEGORY": return {...filterState, categoryFilter: true,
-      category: [...filterState.category, action.payload],}
+      category: [...filterState.category, action.payload]}
+
+    case "REMOVE_CATEGORY": return {...filterState, category: filterState.category.filter(item=>item!==action.payload)}
 
       default: return {...filterState}
     }

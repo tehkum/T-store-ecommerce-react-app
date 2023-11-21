@@ -122,16 +122,16 @@ export default function FilterBox({ productData, productCat }) {
           </label>
         </div>
         <div>
-          <label><input type="checkbox" checked={filterState.category.find(item=>item.category === "shoes")} onClick={()=>filterDispatch({type: "FILTER_BY_CATEGORY", payload: "shoes"})}/>
+          <label><input type="checkbox" checked={filterState.category.find(item=>item === "shoes")} onClick={()=>filterDispatch({type: "FILTER_BY_CATEGORY", payload: "shoes"})}/>
           shoes
           </label>
-          <label><input type="checkbox" checked={filterState.category.find(item=>item.category === "football")} onClick={()=>filterDispatch({type: "FILTER_BY_CATEGORY", payload: "football"})}/>
+          <label><input type="checkbox" checked={filterState.category.find(item=>item === "football")} onClick={()=>filterDispatch({type: "FILTER_BY_CATEGORY", payload: "football"})}/>
           football
           </label>
-          <label><input type="checkbox" checked={filterState.category.find(item=>item.category === "tshirt")} onClick={()=>filterDispatch({type: "FILTER_BY_CATEGORY", payload: "tshirt"})}/>
+          <label><input type="checkbox" checked={filterState.category.find(item=>item === "tshirt")} onClick={()=>filterDispatch({type: "FILTER_BY_CATEGORY", payload: "tshirt"})}/>
           tshirts
           </label>
-          <label><input type="checkbox" checked={filterState.category.find(item=>item.category === "lower")} onClick={()=>filterDispatch({type: "FILTER_BY_CATEGORY", payload: "lower"})}/>
+          <label><input type="checkbox" checked={filterState.category.find(item=>item === "lower")} onClick={()=>filterDispatch({type: "FILTER_BY_CATEGORY", payload: "lower"})}/>
           lower
           </label>
         </div>
