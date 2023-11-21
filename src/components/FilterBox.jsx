@@ -122,7 +122,8 @@ export default function FilterBox({ productData, productCat }) {
           </label>
         </div>
         <div>
-          <label><input type="checkbox" checked={filterState.category.find(item=>item === "shoes")} onClick={()=>filterDispatch({type: "FILTER_BY_CATEGORY", payload: "shoes"})}/>
+          <label>
+            <input type="checkbox" checked={filterState.category.find(item=>item === "shoes")} onClick={()=>filterDispatch({type: "FILTER_BY_CATEGORY", payload: "shoes"})}/>
           shoes
           </label>
           <label><input type="checkbox" checked={filterState.category.find(item=>item === "football")} onClick={()=>filterDispatch({type: "FILTER_BY_CATEGORY", payload: "football"})}/>

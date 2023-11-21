@@ -41,6 +41,8 @@ export function Products() {
     ({ price }) => +price <= +filterState.rangeValue
   );
 
+  const filterCategory = rangeFilter.filter((item)=> filterState.category.map(cat=> cat.indexOf(item.category)!== -1))
+
   useEffect(()=>{
     window.scrollTo({
       top: 100,
@@ -77,7 +79,7 @@ export function Products() {
             <LoadingCard />
           </>
         ) : (
-          rangeFilter.map((item) => {
+          filterCategory.map((item) => {
             const { _id, title, type, price, image, description } = item;
             return (
               <ProductCard
